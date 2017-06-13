@@ -13,6 +13,6 @@ This repository contains a series of study notes for achieving the AWS Associate
  9. [Shared Responsibility Model](https://www.google.com)
 
  | # | Topic     |  Resource                           |
- | ------------- |:-----------------------------------:|
+ | --|:---------:|------------------------------------:|
  | 1 | IAM       | link [link](https://www.google.com) |
 
