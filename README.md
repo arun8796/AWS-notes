@@ -8,7 +8,7 @@ Content may not be fully exhaustive, or up to date. Is always advised to review 
 
 # | Topic | Resource
 --- | --- | ---
-01 | IAM                                  | [link](https://www.google.com)
+01 | IAM                                  | [link](ops/ops.md)
 02 | VPC                                  | [link](https://www.google.com)
 03 | EC2                                  | [link](https://www.google.com)
 04 | S3                                   | [link](https://www.google.com)
