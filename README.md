@@ -1,6 +1,10 @@
-# PREFACE
+## Preface
 
 This repository contains a series of study notes for achieving the AWS Associate Developer & Architect Certifications.
+
+Content may not be fully exhaustive, or up to date. Is always advised to review the AWS FAQs pages related to each exam topic.
+
+## Table of Contents
 
 # | Topic | Resource
 --- | --- | ---
