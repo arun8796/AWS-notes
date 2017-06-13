@@ -1,29 +1,13 @@
-# README #
+# PREFACE #
+This repository contains a series of study notes for achieving the AWS Associate Developer & Architect certification.
 
-This README would normally document whatever steps are necessary to get your application up and running.
-
-### What is this repository for? ###
-
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
-
-### How do I get set up? ###
-
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
-
-### Contribution guidelines ###
-
-* Writing tests
-* Code review
-* Other guidelines
-
-### Who do I talk to? ###
-
-* Repo owner or admin
-* Other community or team contact
+ # TOC #
+ 1. [IAM](https://www.google.com)
+ 2. [VPC](https://www.google.com)
+ 3. [EC2](https://www.google.com)
+ 4. [S3](https://www.google.com)
+ 5. [DynamoDB](https://www.google.com)
+ 6. [SQS](https://www.google.com)
+ 7. [SNS](https://www.google.com)
+ 8. [CloudFormation](https://www.google.com)
+ 9. [Shared Responsibility Model](https://www.google.com)
