@@ -2,7 +2,7 @@
 
 This repository contains a series of study notes for achieving the AWS Associate Developer & Architect certification.
 
- # TOC
+# TOC
 
  1. [IAM](https://www.google.com)
  2. [VPC](https://www.google.com)
