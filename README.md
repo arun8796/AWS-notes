@@ -14,5 +14,5 @@ This repository contains a series of study notes for achieving the AWS Associate
 
  | # | Topic     |  Resource     |
  | ------------- |:-------------:|
- | 1 | IAM       | [link](https://www.google.com) |
+ | 1 | IAM       | link [link](https://www.google.com) |
 
