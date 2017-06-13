@@ -12,7 +12,7 @@ This repository contains a series of study notes for achieving the AWS Associate
  8. [CloudFormation](https://www.google.com)
  9. [Shared Responsibility Model](https://www.google.com)
 
- | # | Topic     |               |
+ | # | Topic     |  Resource     |
  | ------------- |:-------------:|
  | 1 | IAM       | [link](https://www.google.com) |
 
