@@ -1,7 +1,7 @@
 ## Preface
 
-DynamoDB is a Regional AWS service that provides a fully managed NoSql Database in the Cloud. DynamoDB is capable of supporting both a key-value and a document based data model.
-Information are always stored on SSD disks and are replicated across three geographically distinct data centers. Because of these design considerations is important to remember that the information may require time to be propagated, therefore two different types of Consistency models for reads operation are supported:
+DynamoDB is a Regional AWS service that provides a fully managed NoSql Database in the Cloud. DynamoDB is capable of supporting both key-value and document data strucutre.
+Information are always stored on SSD disks and are replicated across three geographically distinct data centers. Because of these distributed nature of DynamoDB is important to remember that the information may require time to be propagated, therefore two different types of Consistency models for reads operation are supported:
 
 - **Eventual Consistent model**: the consistency across all the distributed copies of the data is reached usually within a second. This option offers the best performances but also means that a read operation, after a successful write, may not return consistent information.
 - **Strongly Consistent model**: no delay is introduced so the result of a read operation always reflects all the writes operation that received a successful response prior to the read. This option does not however offer best performances.
@@ -11,6 +11,8 @@ The main elements that make up DynamoDB are:
 - **Tables**: like tables in a traditional relation database).
 - **Items**: like rows in a traditional relation database.
 - **Attributes**: that can be of a primitive (String, Numbers, Booleans, etc.) or complex type, like lists or other nested objects.
+
+Data can be exported as a CSV file.
 
 ```
 {
@@ -26,7 +28,6 @@ The main elements that make up DynamoDB are:
 }
 ```
 
-Data can be exported as a CSV file.
 DynamoDB support items of up to 400KB in size with a maximum of 35 nested attributes at the same time, no limit on the number of attributes that make up an item is set. **These are hard limits and cannot be changed.**
 
 ## Pricing
@@ -98,14 +99,3 @@ ListTables | Returns a list of all tables associated with the current account an
 PutItem | Creates a new item, or replaces an old item with a new item.
 BatchWriteItem | Inserts, replaces, and deletes multiple items across multiple tables in a single request, but not as a single transaction. Supports batches of up to 25 items to Put or Delete, with a maximum total request size of 16 MB.
 BatchGetItem | Returns the attributes for multiple items from multiple tables using their primary keys. A single response has a size limit of 16 MB and returns a maximum of 100 items. Supports both strong and eventual consistency.
-
-
-
-
-
-
-
-
-
-
-
