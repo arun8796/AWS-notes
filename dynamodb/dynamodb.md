@@ -76,8 +76,17 @@ In order to calculate the Throughput to used for read and writes operation the f
 
 If the provisioned throughput is exceeded during a read or write operation then a **ProvisionedThroughputExceededException HTTP-400 error** is returned.
 
-## Consistency Model & APIs
+## Concurreny and locking strategies
 
+As DynamoDB is a distributed system multiple users can read and write items at the same time but this may potentially introduce a data consistency issue.
+In order to prevent this from happening DynamoDB provides two mechanisms:
+
+- **ConditionalWrites**. Which uses a conditional expression that is verified immediately prior the write is executed.  If the condition is met then the item is written otherwise the operation is discarded and fails.
+- **AtomicCounter**: That allows to increment/decrement a counter atomically.
+
+ConditionalWrites are always idempotent meaning that if a certain operation is executed multiple time no effect will take place following the first call whilst AtomicCounters are not idenpotent so multiple calls will change the value of the attribute.
+
+## APIs
 
 BatchGetItem
 
