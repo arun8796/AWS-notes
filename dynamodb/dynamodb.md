@@ -57,7 +57,7 @@ A **Query** in DynamoDB is an operation that can be used to find items in a tabl
 The items returned as part of a Query operation are also always sorted by sort-key in ascending order, in order to reverse the order the **ScanIndexForward** option can be provided.
 Query by default are always eventually consistent but thes behaviour can be changed to strongly consistent.
 
-A **Scan** operation just examines every item in the table and as a Query always returns all the attributes on the item, this behaviour can be changes setting a **ProjectionExpresison**.
+A **Scan** operation just examines every item in the table and returns all the attributes on the item, this behaviour can be changes setting a **ProjectionExpresison**. The Scan operation supports eventually consistent, default, and consistent reads.
 
 For performance reason teh developer should always try to design DynamoDB tables in a way that an benefit of indexes so that the Scan operation can be avoided.
 
@@ -74,7 +74,9 @@ In order to calculate the Throughput to used for read and writes operation the f
 - **Eventually Consistent Read**: Same as above but the result must be divided by 2.
 - **Write**: Item size approximated to the nearest integer and multiplied to the nuimber of writes per **second**.
 
-If the provisioned throughput is exceeded during a read or write operation then a **ProvisionedThroughputExceededException HTTP-400 error** is returned.
+If the provisioned throughput is exceeded during a read or write operation then a **ProvisionedThroughputExceededException HTTP-400 error** is returned. User can provision 1 to 10.000 read and write units, but this is a **soft limit** and can be changed contacting the AWS support.
+
+AWS also allows to reserve the read and write capacity at Regional level for an amount of time that goes from 1 up to 3 years (to save on the bill cost). In this case the minimum amount of capacity that can be provisioned is set to 100 units, however this capacity can be dynamically allocated on part or all the tables in the Region.
 
 ## Concurreny and locking strategies
 
@@ -88,7 +90,14 @@ DynamoDB doesn't support any locking mechanism and instead uses an Optimistic Lo
 
 API | Description
 --- | ---
-BatchGetItem | To retrieve multiple items from a DynamoDB table.
+CreateTable | Creates a table and specifies the primary index used for data access.
+UpdateTable | Updates the provisioned throughput values for the given table.
+DeleteTable | Deletes a table.
+DescribeTable | Returns table size, status, and index information.
+ListTables | Returns a list of all tables associated with the current account and endpoint.
+PutItem | Creates a new item, or replaces an old item with a new item.
+BatchWriteItem | Inserts, replaces, and deletes multiple items across multiple tables in a single request, but not as a single transaction. Supports batches of up to 25 items to Put or Delete, with a maximum total request size of 16 MB.
+BatchGetItem | Returns the attributes for multiple items from multiple tables using their primary keys. A single response has a size limit of 16 MB and returns a maximum of 100 items. Supports both strong and eventual consistency.
 
 
 
