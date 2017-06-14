@@ -78,17 +78,18 @@ If the provisioned throughput is exceeded during a read or write operation then 
 
 ## Concurreny and locking strategies
 
-As DynamoDB is a distributed system multiple users can read and write items at the same time but this may potentially introduce a data consistency issue.
-In order to prevent this from happening DynamoDB provides two mechanisms:
+A common issue that may came up in DynamoDB is about the consistency of the data when multiple users try to perform write operation at the same time and for the same item.
+DynamoDB doesn't support any locking mechanism and instead uses an Optimistic Locking strategy via one of the following two options:
 
-- **ConditionalWrites**. Which uses a conditional expression that is verified immediately prior the write is executed.  If the condition is met then the item is written otherwise the operation is discarded and fails.
-- **AtomicCounter**: That allows to increment/decrement a counter atomically.
+- **ConditionalWrites**. Which uses a conditional expression that is verified immediately prior the write is executed.  If the condition is met then the item is written otherwise the operation is discarded and fails. ConditionalWrites are always idempotent meaning that if a certain operation is executed multiple time no effect will take place following the first call.
+- **AtomicCounter**: That allows to increment/decrement a counter atomically. **AtomicCounters** are not idempotent so multiple calls will change the value of the attribute.
 
-ConditionalWrites are always idempotent meaning that if a certain operation is executed multiple time no effect will take place following the first call whilst AtomicCounters are not idenpotent so multiple calls will change the value of the attribute.
+## Top APIs to remember
 
-## APIs
+API | Description
+--- | ---
+BatchGetItem | To retrieve multiple items from a DynamoDB table.
 
-BatchGetItem
 
 
 
