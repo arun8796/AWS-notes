@@ -8,7 +8,7 @@ Information are always stored on SSD disks and are replicated across three geogr
 
 The main elements that make up DynamoDB are:
 
-- **Tables**: like tables in a traditional relation database).
+- **Tables**: like tables in a traditional relation database, DynamoDB only allows 256 tables per Region.
 - **Items**: like rows in a traditional relation database.
 - **Attributes**: that can be of a primitive (String, Numbers, Booleans, etc.) or complex type, like lists or other nested objects.
 
@@ -89,13 +89,13 @@ DynamoDB doesn't support any locking mechanism and instead uses an Optimistic Lo
 
 ## Top APIs to remember
 
-API | Description
---- | ---
-CreateTable | Creates a table and specifies the primary index used for data access.
-UpdateTable | Updates the provisioned throughput values for the given table.
-DeleteTable | Deletes a table.
-DescribeTable | Returns table size, status, and index information.
-ListTables | Returns a list of all tables associated with the current account and endpoint.
-PutItem | Creates a new item, or replaces an old item with a new item.
-BatchWriteItem | Inserts, replaces, and deletes multiple items across multiple tables in a single request, but not as a single transaction. Supports batches of up to 25 items to Put or Delete, with a maximum total request size of 16 MB.
-BatchGetItem | Returns the attributes for multiple items from multiple tables using their primary keys. A single response has a size limit of 16 MB and returns a maximum of 100 items. Supports both strong and eventual consistency.
+API | Consumes Read Write Capacity | Description
+--- | --- | ---
+CreateTable | No | Creates a table and specifies the primary index used for data access. **LimitExceededException** (HTTP-400 error) if the number of concurrent table requests exceeds the maximum allowed of 10. Also, for tables with secondary indexes, only one of those tables can be in the CREATING state at any point in time.
+UpdateTable | No | Updates the provisioned throughput values for the given table.
+DeleteTable | No | Deletes a table.
+DescribeTable | No | Returns table size, status, and index information.
+ListTables | No | Returns a list of all tables associated with the current account and endpoint.
+PutItem | Yes | Creates a new item, or replaces an old item with a new item.
+BatchWriteItem | Yes | Inserts, replaces, and deletes multiple items across multiple tables in a single request, but not as a single transaction. Supports batches of up to 25 items to Put or Delete, with a maximum total request size of 16 MB.
+BatchGetItem | Yes | Returns the attributes for multiple items from multiple tables using their primary keys. A single response has a size limit of 16 MB and returns a maximum of 100 items. Supports both strong and eventual consistency.
