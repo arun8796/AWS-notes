@@ -74,7 +74,9 @@ Intrinsic functions in CloudFormation help developers to assign values to templa
 
 ```
 **Example**
-A classic example is the registration of a LoadBalancer DNS with a Route53 domain. As at the time the developer creates the template the LodBalancer **DnsName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DnsName** output property that is obtained once the AWS resource is created.
+A classic example is the registration of a LoadBalancer DNS with a Route53 domain.
+
+As at the time the developer creates the template the LodBalancer **DnsName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DnsName** output property that is obtained once the AWS resource is created.
 ```
 
 Top Intrinsic functions to remember:
