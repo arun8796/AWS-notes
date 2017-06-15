@@ -8,15 +8,15 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 
 # | Topic | Resource
 --- | --- | ---
-01 | IAM - Identity & Access Management | [link](ops/not-yet-available.md)
-02 | VPC - Virtual Private Cloud        | [link](ops/not-yet-available.md)
-03 | EC2 - Elastic Compute Cloud        | [link](ops/not-yet-available.md)
-04 | S3 - Simple Storage Service        | [link](ops/not-yet-available.md)
+01 | IAM - Identity & Access Management | -
+02 | VPC - Virtual Private Cloud        | -
+03 | EC2 - Elastic Compute Cloud        | -
+04 | S3 - Simple Storage Service        | -
 05 | DynamoDB                           | [link](dynamodb/README.md)
-06 | SQS - Simple Queue Service         | [link](ops/not-yet-available.md)
-07 | SNS - Simple Notification Service  | [link](ops/not-yet-available.md)
+06 | SQS - Simple Queue Service         | -
+07 | SNS - Simple Notification Service  | -
 08 | CloudFormation                     | [link](cloudformation/README.md)
-09 | The Shared responsibility Model    | [link](ops/not-yet-available.md)
+09 | The Shared responsibility Model    | -
 
 
 
