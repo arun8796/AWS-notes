@@ -83,7 +83,7 @@ Fn::GetAZs | Returns an array that lists Availability Zones for a specified regi
 Fn::Join | Appends a set of values into a single value, separated by the specified delimiter. If a delimiter is the empty string, the set of values are concatenated with no delimiter. | ``` { "Fn::Join" : [ "delimiter", [ comma-delimited list of values ] ] } ```
 Fn::Ref | Returns the value of the specified parameter or resource. When you specify a parameter's logical name, it returns the value of the parameter. When you specify a resource's logical name, it returns a value that you can typically use to refer to that resource, such as a physical ID. | ```{ "Ref" : "logicalName" }```
 
-**Example**: Registration of a LoadBalancer DNS with a Route53 domain. As at the time the developer creates the template the LodBalancer **DnsName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DnsName** output property that is obtained once the AWS resource is created.
+**Example**: Registration of a LoadBalancer DNS with a Route53 domain. As at the time the developer creates the template the LodBalancer **DNSName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DNSName** output property that is obtained once the AWS resource is created.
 
 ## Pricing
 
