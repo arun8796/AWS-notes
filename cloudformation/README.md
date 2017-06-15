@@ -70,11 +70,7 @@ For every stack a users can also decide to:
 
 ##  Intrinsic Functions
 
-Intrinsic functions in CloudFormation help developers to assign values to template properties that are not available until runtime.
-
-**Example**: Registration of a LoadBalancer DNS with a Route53 domain.
-             As at the time the developer creates the template the LodBalancer **DnsName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DnsName** output property that is obtained once the AWS resource is created.
-
+Intrinsic functions in CloudFormation help developers to assign values to template properties that are not available until runtime, these can only be used in specific parts of a template: resource, outputs, metadata, and update policy attributes.
 Top Intrinsic functions to remember:
 
 Function | Description | Syntax
@@ -84,8 +80,19 @@ Fn::GetAtt | Returns the value of an attribute from a resource in the template. 
 Fn::GetAZs | Returns an array that lists Availability Zones for a specified region. | ``` { "Fn::GetAZs" : "region" } ```
 Fn::Join | Appends a set of values into a single value, separated by the specified delimiter. If a delimiter is the empty string, the set of values are concatenated with no delimiter. | ``` { "Fn::Join" : [ "delimiter", [ comma-delimited list of values ] ] } ```
 
+**Example**: Registration of a LoadBalancer DNS with a Route53 domain. As at the time the developer creates the template the LodBalancer **DnsName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DnsName** output property that is obtained once the AWS resource is created.
+
 ## Pricing
 
 From a pricing perspective the AWS CloudFormation service is free of charge, user only pays the resources that are provisione as part of a stack creation. 
 
 ## Top APIs to remember
+
+Api | Description
+--- | ---
+CreateStack | Creates a stack as specified in the template. After the call completes successfully, the stack creation starts. You can check the status of the stack via the DescribeStacks API.
+DeleteStack | Deletes a specified stack. Once the call completes successfully, stack deletion starts. Deleted stacks do not show up in the DescribeStacks API if the deletion has been completed successfully.
+UpdateStack | Updates a stack as specified in the template. After the call completes successfully, the stack update starts. You can check the status of the stack via the DescribeStacks action.
+DescribeStacks | Returns the description for the specified stack; if no stack name was specified, then it returns the description for all the stacks created. If the stack does not exist, an **AmazonCloudFormationException** is returned.
+ListStacks | Returns the summary information for stacks whose status matches the specified StackStatusFilter. Summary information for stacks that have been deleted is kept for 90 days after the stack is deleted. If no StackStatusFilter is specified, summary information for all stacks is returned (including existing stacks and stacks that have been deleted).
+ListStackResources | Returns descriptions of all resources of the specified stack. For deleted stacks, ListStackResources returns resource information for up to 90 days after the stack has been deleted.
