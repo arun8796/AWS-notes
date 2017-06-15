@@ -13,7 +13,7 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 03 | EC2 - Elastic Compute Cloud        | -
 04 | S3 - Simple Storage Service        | -
 05 | DynamoDB                           | [link](dynamodb/README.md)
-06 | SQS - Simple Queue Service         | -
+06 | SQS - Simple Queue Service         |  [link](sqs/README.md)
 07 | SNS - Simple Notification Service  | -
 08 | CloudFormation                     | [link](cloudformation/README.md)
 09 | The Shared responsibility Model    | -
