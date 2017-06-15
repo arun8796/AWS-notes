@@ -81,6 +81,7 @@ Fn::FindInMap | Returns the value corresponding to keys in a two-level map that 
 Fn::GetAtt | Returns the value of an attribute from a resource in the template. | ``` { "Fn::GetAtt" : [ "logicalNameOfResource", "attributeName" ] } ```
 Fn::GetAZs | Returns an array that lists Availability Zones for a specified region. | ``` { "Fn::GetAZs" : "region" } ```
 Fn::Join | Appends a set of values into a single value, separated by the specified delimiter. If a delimiter is the empty string, the set of values are concatenated with no delimiter. | ``` { "Fn::Join" : [ "delimiter", [ comma-delimited list of values ] ] } ```
+Fn::Ref | Returns the value of the specified parameter or resource. When you specify a parameter's logical name, it returns the value of the parameter. When you specify a resource's logical name, it returns a value that you can typically use to refer to that resource, such as a physical ID. | ```{ "Ref" : "logicalName" }```
 
 **Example**: Registration of a LoadBalancer DNS with a Route53 domain. As at the time the developer creates the template the LodBalancer **DnsName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DnsName** output property that is obtained once the AWS resource is created.
 
@@ -98,4 +99,3 @@ UpdateStack | Updates a stack as specified in the template. After the call compl
 DescribeStacks | Returns the description for the specified stack; if no stack name was specified, then it returns the description for all the stacks created. If the stack does not exist, an **AmazonCloudFormationException** is returned.
 ListStacks | Returns the summary information for stacks whose status matches the specified StackStatusFilter. Summary information for stacks that have been deleted is kept for 90 days after the stack is deleted. If no StackStatusFilter is specified, summary information for all stacks is returned (including existing stacks and stacks that have been deleted).
 ListStackResources | Returns descriptions of all resources of the specified stack. For deleted stacks, ListStackResources returns resource information for up to 90 days after the stack has been deleted.
-Ref | Returns the value of the specified parameter or resource. When you specify a parameter's logical name, it returns the value of the parameter. When you specify a resource's logical name, it returns a value that you can typically use to refer to that resource, such as a physical ID. | ```{ "Ref" : "logicalName" }```
