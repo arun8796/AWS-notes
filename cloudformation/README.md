@@ -72,12 +72,8 @@ For every stack a users can also decide to:
 
 Intrinsic functions in CloudFormation help developers to assign values to template properties that are not available until runtime.
 
-```
-**Example**
-A classic example is the registration of a LoadBalancer DNS with a Route53 domain.
-
-As at the time the developer creates the template the LodBalancer **DnsName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DnsName** output property that is obtained once the AWS resource is created.
-```
+**Example**: Registration of a LoadBalancer DNS with a Route53 domain.
+             As at the time the developer creates the template the LodBalancer **DnsName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DnsName** output property that is obtained once the AWS resource is created.
 
 Top Intrinsic functions to remember:
 
@@ -92,4 +88,4 @@ Fn::Join | Appends a set of values into a single value, separated by the specifi
 
 From a pricing perspective the AWS CloudFormation service is free of charge, user only pays the resources that are provisione as part of a stack creation. 
 
-## TOP APIs to remember
+## Top APIs to remember
