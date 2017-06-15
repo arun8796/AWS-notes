@@ -42,7 +42,7 @@ In order to minimise the overall cost a Long polling strategy may be used instea
 
 ## SQS Fan Out
 
-Is a mechanism that can be used to ‚Äúglue‚Äù together AWS SNS and SQS services. In simple words an SQS queue can be subscribed to a SNS topic and received messages as soon as they are delivered on it. This is particularly useful when multiple actions needs to be performed on the same message.
+Is a mechanism that can be used to ìglueî together AWS SNS and SQS services. In simple words an SQS queue can be subscribed to a SNS topic and receive messages as soon as they are delivered on it. This is particularly useful when multiple actions needs to be performed on the same message.
 
 ## FIFO Queues
 
