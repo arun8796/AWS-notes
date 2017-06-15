@@ -3,22 +3,24 @@
 AWS CloudFormation is a service that gives developers a way to create a collection of AWS resources in an orderly and predictable fashion via a well defined scripting language that can be based on JSON or YAML.
 
 In CloudFormation developers create templates that are then uploaded into S3 and executed via the console or via the APIs. When a template is started a new Stack is being create and the outcome of this operation can be one one of the following two:
-- The stack succeded, all the AWS resources described in the template were properly provisioned in AWS.
+- The stack succeeded, all the AWS resources described in the template were properly provisioned in AWS.
 - The stack failed, something went wrong during the execution, all the resources provisioned as part of the stack execution are automatically removed (Rollback).
 
-There is no limit on the total number of templates that developers can create however there is a soft limit on the total number of Stacks that can be executed, default value is 200 (this soft limit can be however changed raising a support request with AWS).
-
-When a new stack need to be executed the following actions are required:
+There is no limit on the total number of templates that developers can create however there is a soft limit on the total number of Stacks that can be executed, default value is 200 (this soft limit can be however changed raising a support request with AWS). When a new stack need to be executed the following actions are required:
 
 - A unique stack name must be provided.
 - A template is selected.
 - If the template declares input parameters then these parameters must be provided by the user.
 - The stack is being created and when finished the template output information are returned to the user.
 
-For every stack a users can also decide to:
+For every already existing stack a users can also decide to:
 
 - Delete the stack entirely, in this case all the resources provisioned during the creation are disposed.
 - Update an existing stack, in this case CloudFrmation computes a **diff** between the new template and the resources already allocated in the Stack and only applies the difference.
+
+CloudFormation has built-in capabilities to install software when a stack is created and also work in conjunction with Chef and Puppet.
+
+The policy section of a CloudFormation template can also be used to define strategies to backup data when a stack is deleted.
 
 ## Anathomy of a CloudFormation template
 
@@ -59,7 +61,7 @@ For every stack a users can also decide to:
 ```
 
 - **Format Version** (optional). Specifies the AWS CloudFormation template version that the template conforms to. The template format version is not the same as the API or WSDL version. The template format version can change independently of the API and WSDL versions.
-- **Description** (optional). A text string that describes the template. This section must always follow the template format version section.
+- **Description** (optional). A text string that describes the template. This section must always follow the template format version section. No default value is set if this field is not provided.
 - **Metadata** (optional). Objects that provide additional information about the template.
 - **Parameters** (optional). Specifies values that you can pass in to your template at runtime (when you create or update a stack). You can refer to parameters in the Resources and Outputs sections of the template.
 - **Mappings** (optional). A mapping of keys and associated values that you can use to specify conditional parameter values, similar to a lookup table. You can match a key to a corresponding value by using the Fn::FindInMap intrinsic function in the Resources and Outputs section.
