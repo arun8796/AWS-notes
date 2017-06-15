@@ -10,6 +10,8 @@ At the time of writing, AWS provides two main types of queues:
 - Standard (available in all regions)
 - FIFO (currently available in the US West (Oregon), US East (Ohio), US East (N. Virginia), and EU (Ireland) regions).
 
+AWS SQS doesn't provide a priority mechanism, so if there is a need to process certain message before others a different privileged queue should be created.
+
 ## Pricing
 From a billing perspective cost is calculated based on the total number of requests also every request can be up to 64KB in size, first million requests per month is free.
 
@@ -36,22 +38,15 @@ VisibilityTimeout | 0 seconds | 12 hours | 30 seconds | The length of time durin
 ## Long vs. Short Poll
 
 As already explained in the previous sections, messages sent to SQS are distributed over several AWS facilities and a polling mechanism is used by consumers to pick up new messages to process. Polling introduces an high number of requests being sent to the SQS endpoint with a considerable impact on the overall bill cost. This happens because AWS, by default uses a Short Polling strategy, sampling messages to delivery only from a small sub-set of the servers in the AWS facility; in this case most of the requests sent by the consumers return an empty response.
-In order to minimise the overall cost a Long polling strategy may be used instead. When long polling is enabled, **ReceiveMessageWaitTimeSeconds** set to 20 seconds, AWS ill sample the messages to delivery from all the server in the AWS facility allowing to reduces the number of empty responses.
+In order to minimise the overall cost a Long polling strategy may be used instead. When long polling is enabled, **ReceiveMessageWaitTimeSeconds** set to 20 seconds, AWS will sample the messages to delivery from all the server in the AWS facility allowing to reduces the number of empty responses.
 
------------------------------------
+## SQS Fan Out
 
+Is a mechanism that can be used to “glue” together AWS SNS and SQS services. In simple words an SQS queue can be subscribed to a SNS topic and received messages as soon as they are delivered on it. This is particularly useful when multiple actions needs to be performed on the same message.
 
-Important concepts to remind are:
+## FIFO Queues
 
-SQS backend is made up of several message brokers  distributed over the AWS network for resilience and High Availability purposes. The overall infrastructure is able to scale based on demand however no action is needed from a user perspective to scale up or down.
-
-SQS is based on a pooling mechanism, this means that consumers continuously check, via the APIs, if there are messages to process for a specific queue. By default SQS uses a short polling mechanism which basically means that only a small subset of message brokers, in the backend, gets sampled when a consumer tries to discover new messages. This behaviour causes lots of requests to be sent to AWS and lots of false responses to be generated and received by consumers, the overall volume of requests is billed as usual and this may cause cost issues. To keep the cost contained a long polling strategy can be selected via the ReceiveMessageWaitTimeSeconds property. In this case all the message brokers in the backend gets queried and messages gets delivered as soon they becomes available.
-
-Messages in AWS SQS simple queue are not provided with a priority. If there is a need to process messages before others then multiple queues and dedicated consumers strategies have to be used.
-
-FIFO (only available in US West and US East region). In a FIFO queue, the order is strictly guaranteed and messages get delivered exactly once, and in the order they are first delivered on the main queue. Also,  AWS has a mechanism in place to deduplicate messages sent by multiple producers over a 5 minute time window.   A limit of 300 transactions per seconds on this type of queues is in place.
-
+In a FIFO queue, the order is strictly guaranteed and messages get delivered exactly once, and in the order they are first delivered on the main queue. Also,  AWS has a mechanism in place to deduplicate messages sent by multiple producers over a 5 minute time window.   A limit of 300 transactions per seconds on this type of queues is in place.
 FIFO queues in AWS also supports message grouping that allow to further partition messages in a FIFO queue based on a Group ID. Multiple producers can send messages to the same FIFO queue with the same group ID but by design only a single consumers is allowed to consume messages from that group ID.
 
-
-SQS Fanout. Fanout is a mechanism that can be used to “glue” together AWS SNS and SQS services. In simple words an SQS queue can be subscribed to a SNS topic and received messages as soon as they are delivered on it. This is particularly useful when multiple actions needs to be performed on the same message.
+## Top APIs to remember
