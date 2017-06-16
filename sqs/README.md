@@ -3,14 +3,14 @@
 SQS is an AWS Regional service that provides queuing capabilities in the Cloud and is mainly being used to decouple Applications.
 In SQS users define queues where producers can send messages that then gets processed by consumers (like EC2 instances, Lambada, etc.), the maximum message size is set to 256KB, **this is an hard limit** and cannot be changed.
 
-SQS uses a poll mechanism meaning that message consumers have to cyclically check if there is a message to consume on the queue. This has also a direct impact on the billing cost as it is calculated based on the total number of requests that are sent to the SQS endpoint.
-If more than 256KB need to be sent on an SQS queue, AWS advises to save these information in S3 and add a correlation identifier on the message itself to help consumers to lookup the object later on.
+SQS uses a poll mechanism meaning that message consumers have to cyclically check if there is a message to consume on the queue. This has a direct impact on the billing cost as it is calculated based on the total number of requests that are sent to the SQS endpoint.
+If more than 256KB need to be sent on an SQS queue in a single message, AWS advises to save these information first in S3 and use a correlation identifier on the message itself to help consumers to lookup the object later on.
 
 At the time of writing, AWS provides two main types of queues:
 - Standard (available in all regions)
 - FIFO (currently available in the US West (Oregon), US East (Ohio), US East (N. Virginia), and EU (Ireland) regions).
 
-AWS SQS doesn't provide a priority mechanism, so if there is a need to process certain message before others a different privileged queue should be created.
+AWS SQS does,nt provide a priority mechanism, so if there is a need to process certain message before others a different privileged queue should be created.
 
 ## Pricing
 From a billing perspective cost is calculated based on the total number of requests also every request can be up to 64KB in size, first million requests per month is free.
@@ -26,7 +26,7 @@ Order is also undetermined as SQS uses a distributed architecture where the data
 
 The **VisbilityTimeout** for a single message can also be changed on the fly via an API call, **ChangeMessageVisibility**, in this case the change only affects the message and not the entire queue.
 
-Whebn a new STandard queue is created the following attributes must be provided:
+When a new Standard queue is created the following attributes have to be provided:
 
 Property | Min value | Max value | Default value | Description
 --- | --- | --- | --- | ---
@@ -50,3 +50,12 @@ In a FIFO queue, the order is strictly guaranteed and messages get delivered exa
 FIFO queues in AWS also supports message grouping that allow to further partition messages in a FIFO queue based on a Group ID. Multiple producers can send messages to the same FIFO queue with the same group ID but by design only a single consumers is allowed to consume messages from that group ID.
 
 ## Top APIs to remember
+
+API | Description
+--- | ---
+CreateQueue | Creates a new standard or FIFO queue.
+DeleteQueue | Deletes the queue specified by the QueueUrl, regardless of the queue's contents. If the specified queue doesn't exist, Amazon SQS returns a successful response.
+ListQueues | Returns a list of your queues (up to 1000).
+SendMessage | Delivers a message to the specified queue.
+SendMessageBatch | Delivers up to ten messages to the specified queue.
+PurgeQueue |Deletes the messages in a queue specified by the QueueURL parameter. When you purge a queue, the message deletion process takes up to 60 seconds.
