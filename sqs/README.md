@@ -39,7 +39,7 @@ VisibilityTimeout | 0 seconds | 12 hours | 30 seconds | The length of time durin
 ## Long vs. Short Poll
 
 As already explained in the previous sections, messages sent to SQS are distributed over several AWS facilities and a polling mechanism is used by consumers to pick up new messages to process. Polling introduces an high number of requests being sent to the SQS endpoint with a considerable impact on the overall bill cost. This happens because AWS, by default uses a Short Polling strategy, sampling messages to delivery only from a small sub-set of the servers in the AWS facility; in this case most of the requests sent by the consumers return an empty response.
-In order to minimise the overall cost a Long polling strategy may be used instead. When long polling is enabled, **ReceiveMessageWaitTimeSeconds** set to 20 seconds, AWS will sample the messages to delivery from all the server in the AWS facility allowing to reduces the number of empty responses.
+In order to minimise the overall cost a Long polling strategy may be used instead. When long polling is enabled, **ReceiveMessageWaitTimeSeconds** set to 20 seconds, AWS will sample the messages to delivery from all the server in the AWS facility allowing to reduce the number of empty responses.
 
 ## SQS Fan Out
 
