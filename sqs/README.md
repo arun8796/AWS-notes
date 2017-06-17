@@ -14,7 +14,7 @@ At the time of writing, AWS provides two main types of queues:
 AWS SQS doesn't provide a priority mechanism, so if there is a need to process certain message before others a different privileged queue should be created.
 
 ## Pricing
-From a billing perspective cost is calculated based on the total number of requests also every request can be up to 64KB in size, first million requests per month is free.
+From a billing perspective cost is calculated based on the total number of requests, every request can be up to 64KB in size, first million requests per month is free.
 
 **Example**: A message is 200KB in size, how many requests in total will be billed to put the message on the queue?
 Solution: 200KB / 64KB = 3.125 which needs to be rounded by excess so a total of 4 requests will be billed.
