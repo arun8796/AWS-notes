@@ -47,8 +47,8 @@ Is a mechanism that can be used to **glue** together AWS SNS and SQS services. I
 
 ## FIFO Queues
 
-In a FIFO queue, the order is strictly guaranteed and messages get delivered exactly once, and in the order they are first delivered on the main queue. Also,  AWS has a mechanism in place to deduplicate messages sent by multiple producers over a 5 minute time window.   A limit of 300 transactions per seconds on this type of queues is in place.
-FIFO queues in AWS also supports message grouping that allow to further partition messages in a FIFO queue based on a Group ID. Multiple producers can send messages to the same FIFO queue with the same group ID but by design only a single consumers is allowed to consume messages from that group ID.
+In a FIFO queue, the order is strictly guaranteed and messages get delivered exactly once.AWS has a mechanism in place to deduplicate messages sent by multiple producers over a 5 minute time window. 
+A limit of 300 transactions per seconds on this type of queues is in place. FIFO queues in AWS also supports message grouping that allow to further partition messages in a FIFO queue based on a Group ID. Multiple producers can send messages to the same FIFO queue with the same group ID but by design only a single consumers is allowed to consume messages from that group ID.
 
 ## Top APIs to remember
 
