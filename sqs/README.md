@@ -7,6 +7,7 @@ SQS uses a poll mechanism meaning that message consumers have to cyclically chec
 If more than 256KB need to be sent on an SQS queue in a single message, AWS advises to save these information first in S3 and use a correlation identifier on the message itself to help consumers to lookup the object later on.
 
 At the time of writing, AWS provides two main types of queues:
+
 - Standard (available in all regions)
 - FIFO (currently available in the US West (Oregon), US East (Ohio), US East (N. Virginia), and EU (Ireland) regions).
 
@@ -42,7 +43,7 @@ In order to minimise the overall cost a Long polling strategy may be used instea
 
 ## SQS Fan Out
 
-Is a mechanism that can be used to “glue” together AWS SNS and SQS services. In simple words an SQS queue can be subscribed to a SNS topic and receive messages as soon as they are delivered on it. This is particularly useful when multiple actions needs to be performed on the same message.
+Is a mechanism that can be used to ï¿½glueï¿½ together AWS SNS and SQS services. In simple words an SQS queue can be subscribed to a SNS topic and receive messages as soon as they are delivered on it. This is particularly useful when multiple actions needs to be performed on the same message.
 
 ## FIFO Queues
 
