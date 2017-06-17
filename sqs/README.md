@@ -11,7 +11,7 @@ At the time of writing, AWS provides two main types of queues:
 - Standard (available in all regions)
 - FIFO (currently available in the US West (Oregon), US East (Ohio), US East (N. Virginia), and EU (Ireland) regions).
 
-AWS SQS does,nt provide a priority mechanism, so if there is a need to process certain message before others a different privileged queue should be created.
+AWS SQS doesn't provide a priority mechanism, so if there is a need to process certain message before others a different privileged queue should be created.
 
 ## Pricing
 From a billing perspective cost is calculated based on the total number of requests also every request can be up to 64KB in size, first million requests per month is free.
