@@ -45,10 +45,7 @@ S3 support different types of storage classes, 4 at the time of writing, each pr
 Storage Type | Availability | Durability | Description
 --- | --- | --- | ---
 Standard | 99.99% Availability | 99.99999999999% Durability (11 x 9s) | Objects are always replicated for redundancy to other AWS facilities and are capable to sustain the loss of 2 facilities concurrently.
-Infrequent Access | 99.99% Availability | 99.99999999999% Durability (11 x 9s) |
-- Objects are always replicated for redundancy to other AWS facilities and are capable to sustain the loss of 2 facilities concurrently.
-- A fee applies for object retrieval.
-- Cheaper than Standard but only use if the access to information is infrequent. |
+Infrequent Access | 99.99% Availability | 99.99999999999% Durability (11 x 9s) | Objects are always replicated for redundancy to other AWS facilities and are capable to sustain the loss of 2 facilities concurrently. <br /> A fee applies for object retrieval. <br /> Cheaper than Standard but only use if the access to information is infrequent. |
 
 
 
