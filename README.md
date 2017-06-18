@@ -11,7 +11,7 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 01 | IAM - Identity & Access Management | -
 02 | VPC - Virtual Private Cloud        | -
 03 | EC2 - Elastic Compute Cloud        | -
-04 | S3 - Simple Storage Service        | -
+04 | S3 - Simple Storage Service        | [link](s3/README.md)
 05 | DynamoDB                           | [link](dynamodb/README.md)
 06 | SQS - Simple Queue Service         | [link](sqs/README.md)
 07 | SNS - Simple Notification Service  | [link](sns/README.md)
