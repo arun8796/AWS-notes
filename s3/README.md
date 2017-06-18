@@ -20,6 +20,7 @@ For files exceeding 100 MBytes the Multi Part upload must be used (see later for
 ## Design Considerations
 
 Objects in S3 are made of:
+
 - A Key.
 - A Value (the bytes representing the file).
 - A Version id (optional).
@@ -27,10 +28,12 @@ Objects in S3 are made of:
 - Some Sub-Resources. Which includes: Access Control Lists and Torrent (used to support the bit-torrent protocol).
 
 S3 has been designed to follow the lexicographic order of the keys when persisting and retrieving objects, and this has an important impact on overall performance.
+
 When the number of operation for a specific bucket is intensive AWS can decide to create partitions to allow a faster access to the information, in this case if the key used to persist the objects follow a sequential order there is an high probability that the partition, used to save/retrieve data, are always the same and this may degrade overall performances.
 To avoid this issue some level of randomness should be added to the key string when persisting objects.
 
 **Amazon S3 in all Regions provide a read-after-write consistency for PUTS of new objects and eventual consistency for overwrite PUTS and DELETES. **
+
 This basically means that when a new object is uploaded that becomes immediately available for consumption whilst when an object is deleted, or updated, some time is necessary for the changes to become effective, this is because changes have to be propagated over the distributed backend.
 
 A successfully Operation in S3 always returns the HTTP 200 response code.
