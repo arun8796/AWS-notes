@@ -45,25 +45,11 @@ S3 support different types of storage classes, 4 at the time of writing, each pr
 Storage Type | Availability | Durability | Description
 --- | --- | --- | ---
 Standard | 99.99% Availability | 99.99999999999% Durability (11 x 9s) | Objects are always replicated for redundancy to other AWS facilities and are capable to sustain the loss of 2 facilities concurrently.
-Infrequent Access | 99.99% Availability | 99.99999999999% Durability (11 x 9s) | - Objects are always replicated for redundancy to other AWS facilities and are capable to sustain the loss of 2 facilities concurrently.  - A fee applies for object retrieval.  - Cheaper than Standard but only use if the access to information is infrequent. |
-
-
-
-Reduced Redundant Storage
-99.99% Availability
-99.99% Durability
-Able to sustain the loss of 1 facility.
-Cheaper service but only use when is always possible to re-create the information from scratch.
-
-
-Glacier
-99.99999999999% Durability
-4 to 5 hours object retrieval
-Cheaper service but no SLA is guaranteed and object retrieval may take from 4 to 5 hours in total.
+Infrequent Access | 99.99% Availability | 99.99999999999% Durability (11 x 9s) | **(1)** Objects are always replicated for redundancy to other AWS facilities and are capable to sustain the loss of 2 facilities concurrently.  **(2)** A fee applies for object retrieval. **(3)** Cheaper than Standard but only use if the access to information is infrequent. |
+Reduced Redundant Storage | 99.99% Availability | 99.99% Durability | **(1)** Able to sustain the loss of 1 facility. **(2)** Cheaper service but only use when is always possible to re-create the information from scratch.
+Glacier | 99.99999999999% Durability | N/A | **(1)** Cheaper service but no SLA is guaranteed and object retrieval may take from 4 to 5 hours in total.
 
 The pricing model for S3 services charges the following things: Storage, Requests, Storage Management, Data Transfer and Transfer Acceleration (through Content Delivery Network aka CDN).
-
-
 
 ## Multipart Upload
 
