@@ -29,17 +29,17 @@ Each 64KB chunk of published data is billed as 1 request. For example, a single 
 
 # | Description
 --- | ---
-Type |
-MessgaeId |
-TopicArn |
-Subject |
-Message |
-Timestamp |
-SignatureVersion |
-Signature |
-SignatureCertURL |
-UnsubscribeURL |
-MessageAttributes |
+Type | The type of message. For a subscription confirmation, the type is SubscriptionConfirmation.
+MessgaeId | A Universally Unique Identifier, unique for each message published.
+TopicArn | The Amazon Resource Name (ARN) for the topic that this message was published to.
+Subject | The Subject parameter specified when the notification was published to the topic. Note that this is an optional parameter. If no Subject was specified, then this name/value pair does not appear in this JSON document.
+Message | The Message value specified when the notification was published to the topic.
+Timestamp | The time (GMT) when the subscription confirmation was sent.
+SignatureVersion | Version of the Amazon SNS signature used.
+Signature | Base64-encoded "SHA1withRSA" signature of the Message, MessageId, Type, Timestamp, and TopicArn values.
+SignatureCertURL | The URL to the certificate that was used to sign the message.
+UnsubscribeURL | A URL that you can use to unsubscribe the endpoint from this topic.
+MessageAttributes | Attributes attached to the notification (mostly for mobile push).
 
 ## Mobile Push
 
@@ -63,3 +63,16 @@ To begin using Amazon SNS mobile push notifications, you need the following:
 ** A bulk upload of existing device tokens to Amazon SNS, either via the console interface or API is possible.**
 
 ## Top APIs to remember
+
+API | Description
+--- | ---
+CreateTopic | Creates a topic to which notifications can be published. Users can create at most 100,000 topics.
+DeleteTopic | Deletes a topic and all its subscriptions.
+ListTopics | Returns a list of the requester's topics. Each call returns a limited list of topics, up to 100. If there are more topics, a NextToken is also returned. Use the NextToken parameter in a new ListTopics call to get further results.
+ListSubscriptions | Returns a list of the requester's subscriptions. Each call returns a limited list of subscriptions, up to 100. If there are more subscriptions, a NextToken is also returned. Use the NextToken parameter in a new ListSubscriptions call to get further results.
+Publish | Sends a message to an Amazon SNS topic.
+Subscribe | Prepares to subscribe an endpoint by sending the endpoint a confirmation message.
+Unsubscribe | Deletes a subscription.
+ConfirmSubscription | Verifies an endpoint owner's intent to receive messages by validating the token sent to the endpoint by an earlier Subscribe action.
+CreatePlatformApplication | Creates a platform application object for one of the supported push notification services
+CreatePlatformEndpoint | Creates an endpoint for a device and mobile app on one of the supported push notification services
