@@ -11,7 +11,7 @@ Objects are uploaded in remote containers, called **Buckets**, and every bucket 
 
 A unique key, that can be constructed to mimic hierarchical structure, has to be provided when files are uploaded and retrieved, the URL format for a bucket is as follow:
 
-https://s3-<region>.amazonaws.com/<bucket name>
+```https://s3-<region>.amazonaws.com/<bucket name>```
 
 Users can provision up to 100 buckets per AWS account, this limit can be changed via AWS support, and the size of a single file can vary between 0 bytes and 5TB. There is no formal limit on the number of files and/or total size that a bucket can have.
 
@@ -60,3 +60,12 @@ The Multipart upload API enables developers to upload large objects in parts. Th
 
 Upon receiving the complete multipart upload request, Amazon S3 constructs the object from the uploaded parts, and developers can then access the object just as you would any other object in your bucket.
 A list of all in-progress multipart uploads can be requested. The multipart API supports the stop and resume mechanism.
+
+## Static Website Hosting & CORS.
+
+S3 can be used to host a static website, when this option is enabled for a bucket an access endpoint is generated with the following structure:
+
+```http://<bucket_name>.s3-website.<region>.amazonaws.com```
+
+If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesn’t allow Cross Origin Requests.
+There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
