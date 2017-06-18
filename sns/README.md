@@ -9,6 +9,9 @@ This means that subscribers are notified in real time and don't have to check fo
 - SMS, Mobile Push.
 - Lambda.
 
+Users can provision up to 100,000 topics, this limit can be changed via AWS support.
+
+
 ## Subscription mechanism
 
 When a new subscriber decides to join a topic its subscription has to be first confirmed, a Token is always included in the subscription request and is valid for **3 days**, multiple subscribers are allowed on the same topic and all of them will receive the notification upon confirmation.
