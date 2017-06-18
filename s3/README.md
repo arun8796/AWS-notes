@@ -38,6 +38,35 @@ This basically means that when a new object is uploaded that becomes immediately
 
 A successfully Operation in S3 always returns the HTTP 200 response code.
 
+## Storage classes
+
+S3 support different types of storage classes, 4 at the time of writing, each provides different options:
+
+Storage Type | Availability | Durability | Description
+--- | --- | --- | ---
+Standard | 99.99% Availability | 99.99999999999% Durability (11 x 9s) | Objects are always replicated for redundancy to other AWS facilities and are capable to sustain the loss of 2 facilities concurrently.
+Infrequent Access | 99.99% Availability | 99.99999999999% Durability (11 x 9s) | Objects are always replicated for redundancy to other AWS facilities and are capable to sustain the loss of 2 facilities concurrently.
+A fee applies for object retrieval.
+Cheaper than Standard but only use if the access to information is infrequent.
+
+
+
+Reduced Redundant Storage
+99.99% Availability
+99.99% Durability
+Able to sustain the loss of 1 facility.
+Cheaper service but only use when is always possible to re-create the information from scratch.
+
+
+Glacier
+99.99999999999% Durability
+4 to 5 hours object retrieval
+Cheaper service but no SLA is guaranteed and object retrieval may take from 4 to 5 hours in total.
+
+The pricing model for S3 services charges the following things: Storage, Requests, Storage Management, Data Transfer and Transfer Acceleration (through Content Delivery Network aka CDN).
+
+
+
 ## Multipart Upload
 
 The Multipart upload API enables developers to upload large objects in parts. This API can be used to upload new large objects or make a copy of an existing object. Multipart uploading is a three-step process:
