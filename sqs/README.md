@@ -34,7 +34,7 @@ Property | Min value | Max value | Default value | Description
 DelaySeconds | 0 minutes | 15 minutes | 0 seconds | The time in seconds that the delivery of all messages in the queue will be delayed
 MessageRetentionPeriod | 1 minute | 14 days | 4 days | The number of seconds Amazon SQS retains a message
 ReceiveMessageWaitTimeSeconds | 1 second | 20 seconds | 0 seconds | Specifies the duration, in seconds, that the ReceiveMessage action call waits until a message is in the queue in order to include it in the response, as opposed to returning an empty response if a message is not yet available.
-VisibilityTimeout | 0 seconds | 12 hours | 30 seconds | The length of time during which a message will be unavailable once a message is delivered from the queue
+VisibilityTimeout | 0 seconds | 12 hours | 30 seconds | The length of time during which a message will be unavailable once a message is delivered to the queue. ** If the value is set to 0 then the message will be always available to consumer unless explicitly deleted.**
 
 ## Long vs. Short Poll
 

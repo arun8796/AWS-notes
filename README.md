@@ -15,8 +15,9 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 05 | DynamoDB                           | [link](dynamodb/README.md)
 06 | SQS - Simple Queue Service         | [link](sqs/README.md)
 07 | SNS - Simple Notification Service  | [link](sns/README.md)
-08 | CloudFormation                     | [link](cloudformation/README.md)
-09 | The Shared responsibility Model    | -
+08 | SWF - Simple Worflow Service       | [link](swf/README.md) 
+09 | CloudFormation                     | [link](cloudformation/README.md)
+10 | The Shared responsibility Model    | -
 
 
 

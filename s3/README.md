@@ -54,13 +54,15 @@ If a static website hosted in an S3 buckets tries to access resources into anoth
 
 # Encryption
 
-From an Encryption perspective wto aspects have to be covered in order to gurante the right level of security of the information. Those two aspects are:
+From an Encryption perspective tho aspects have to be considered to gurante the right level of security:
 
 - **Encryption in transit**. That is when the file moves over the network from one point to another, S3 always encrypts file in transit using the HTTPS protocol.
-- **Encryption at rest**. Which refers to the file persisted in the data centre. In this case S3 supports three types of encryption mechanisms:
-    - **SSE-S3** provides an integrated solution where Amazon handles key management and key protection using multiple layers of security. This option has to be choosen when is acceptable to have Amazon managing keys.
-    - **SSE-C** enables you to leverage Amazon S3 to perform the encryption and decryption of your objects while retaining control of the keys used to encrypt objects. With SSE-C, you don’t need to implement or use a client-side library to perform the encryption and decryption of objects you store in Amazon S3, but you do need to manage the keys that you send to Amazon S3 to encrypt and decrypt objects. Use SSE-C if you want to maintain your own encryption keys, but don’t want to implement or leverage a client-side encryption library.
-    - **SSE-KMS** enables you to use AWS Key Management Service (AWS KMS) to manage your encryption keys. Using AWS KMS to manage your keys provides several additional benefits. With AWS KMS, there are separate permissions for the use of the master key, providing an additional layer of control as well as protection against unauthorized access to your objects stored in Amazon S3. AWS KMS provides an audit trail so you can see who used your key to access which object and when, as well as view failed attempts to access data from users without permission to decrypt the data. Also, AWS KMS provides additional security controls to support customer efforts to comply with PCI-DSS, HIPAA/HITECH, and FedRAMP industry requirements.
+- **Encryption at rest**. Which refers to the file persisted on the AWS servers. In this case S3 supports three types of encryption mechanisms:
+    - **SSE-S3**. Amazon handles key management and key protection using multiple layers of security. This option has to be choosen when is acceptable to have Amazon managing keys.
+    - **SSE-C**. Leverage Amazon S3 to perform the encryption and decryption of the objects while **retaining control of the keys used to encrypt objects**. With SSE-C, you don’t need to implement or use a client-side library to perform the encryption and decryption of objects you store in Amazon S3, but you **do need to manage the keys that you send to Amazon S3 to encrypt and decrypt objects**. Use SSE-C if you want to maintain your own encryption keys, but don’t want to implement or leverage a client-side encryption library.
+    - **SSE-KMS**. AWS Key Management Service (AWS KMS) is a managed service that makes it easy for the user to create and control the encryption keys used to encrypt data. AWS KMS is integrated with other AWS services including: EBS, s3, Amazon Redshift, Amazon Elastic Transcoder, Amazon WorkMail,RDS, and others to make it simple to encrypt your data with encryption keys that you manage. AWS KMS is also integrated with AWS CloudTrail to provide you with key usage logs to help meet your auditing, regulatory and compliance needs.
+
+A bucket can also either contain encrypted an unencrypted content. To specify that a file has to be encrypted at rest the **x-amz-server-side-encryption** header can be used when uploading the object, AES-256 is used for content encryption.
 
 # Versioning
 
@@ -70,34 +72,29 @@ Versioning is a bucket-level feature that allows to keep multiple variants of an
 The versioning state applies to all of the objects in a version-enable bucket. However is important to remember that objects stored in the bucket **before** enabling the versioning have an initial version ID of null. When versioning is enabled existing objects in the bucket do not change what instead changes is how Amazon S3 handles the objects in future requests.
 When an object is deleted into a version-enabled bucket a delete marker is created and the object is not visible anymore, upon deletion of the delete marker the object would be again visible in S3.
 
-
-
-***********************
 # Cross Region Replication
 
-Cross-region replication CRR is a bucket-level feature that enables automatic, asynchronous copying of objects across buckets in **different AWS regions**.
-In the Cross Region Replication configuration users must decide which bucket has to be replicated and must provide the destination bucket where they want the objects replicated to. A subset of objects with specific key name prefixes can be selected as well.
-The object replicas in the destination bucket are exact replicas of the objects in the source bucket, they have the same key names and the same metadata. Amazon S3 encrypts all data in transit across AWS regions using SSL during content replication.
-In order to enable CRR following pre-requisites must be met:
+Cross-region replication is a bucket-level feature that enables automatic, asynchronous copying of objects across buckets in **different AWS regions**. In the Cross Region Replication users must decide which bucket has to be replicated and must provide the destination bucket where they want the objects replicated to. A subset of objects with specific key name prefixes can be selected as well. The object replicas in the destination bucket are exact replicas of the objects in the source bucket, they have the same key names and the same metadata. Amazon S3 encrypts all data in transit across AWS regions using SSL during content replication. In order to enable CRR following pre-requisites must be met:
 
 - The source and destination buckets must be versioning-enabled.
 - The source and destination buckets must be in different AWS regions.
 - Objects can be replicated from a source bucket to only one destination bucket.
 - Amazon S3 must have permission to replicate objects from that source bucket to the destination bucket on your behalf. These permissions can be granted by creating an IAM role that Amazon S3 can assume.
-- If the source bucket owner also owns the object, the bucket owner has full permissions to replicate the object. If not, the source bucket owner must have permission for the Amazon S3 actions s3:GetObjectVersion and s3:GetObjectVersionACL to read the object and object ACL.
-- If you are setting up cross-region replication in a cross-account scenario (where the source and destination buckets are owned by different AWS accounts), the source bucket owner must have permission to replicate objects in the destination bucket. The destination bucket owner needs to grant these permissions via a bucket policy.
 
-Amazon S3 replicates the following things:
+Is also important to remember that:
 
-- Any new objects created after replication is configured. Object existing prior the replication configuration are not migrated.
-- Objects created with server-side encryption using the Amazon S3-managed encryption key. The replicated copy of the object is also encrypted using server-side encryption using the Amazon S3-managed encryption key.
+- Any new objects created after replication is configured will me migrated whilst objects existing prior the replication configuration are not migrated by default.
+- If the objects created is encrypted then the replicated copy of the object is also encrypted using server-side encryption using the Amazon S3-managed encryption key.
 - Amazon S3 replicates only objects in the source bucket for which the bucket owner has permission to read objects and read ACLs.
 - Any object ACL updates are replicated, although there can be some delay before Amazon S3 can bring the two in sync.
 - S3 replicates object tags, if any.
-
-For DELETE operation is also important to remember that:
-
 - If a DELETE request is made without specifying an object version ID, Amazon S3 adds a delete marker, which cross-region replication replicates to the destination bucket.
 - If a DELETE request specifies a particular object version ID to delete, Amazon S3 deletes that object version in the source bucket, but it does not replicate the deletion in the destination bucket (in other words, it does not delete the same object version from the destination bucket).
+- Upon restoration of a deletion marker on the source bucket the deletion action doesn't get cascaded to the destination bucket so the object stays marked as deleted.
 
-Upon restoration of a deletion marker on the source bucket is important to remember that this action doesn't get cascaded so the object stays marked as deleted in the destination bucker.
+# Lifecycle Management
+
+Lifecycle configuration enables users to specify the lifecycle management of objects in a bucket. The configuration is a set of one or more rules, where each rule defines an action for Amazon S3 to apply to a group of objects. These actions can be classified as follows:
+
+- **Transition actions**. In which users define when objects transition to another storage class. For example, you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation, or archive objects to the GLACIER storage class one year after creation.
+- **Expiration actions** – In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.
