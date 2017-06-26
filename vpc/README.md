@@ -6,8 +6,7 @@
     * [Subnet](README.md#markdown-header-subnet)
     * [Internet Gateway](README.md#markdown-header-internet-gateway)
     * [Internet Gateway](README.md#markdown-header-route-tables)
-    * [NAT Gateway](README.md#markdown-header-)
-    * [Peering Connection](README.md#markdown-header-)
+    * [NAT Instances and NAT Gateways](README.md#markdown-header-nat-instances-and-nat-gateways)
 
 * * *
 
@@ -98,7 +97,7 @@ A route table contains a set of rules that are used to determine where network t
 
 Subnets that are associated to a Route table that has a route to an IGW are by default Public Subnets whilst all the other can be considered private. 
 
-## NAT Gateway
+## NAT Instances and NAT Gateways
 
 A highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet.
 
