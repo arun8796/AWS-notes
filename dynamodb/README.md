@@ -6,7 +6,7 @@
 4. [Query vs Scan](README.md#markdown-header-query-vs-scan)
 5. [Streams](README.md#markdown-header-streams)
 6. [Throughput Provisioning](README.md#markdown-header-throughput-provisioning)
-7. [Concurreny and locking strategies](README.md#markdown-header-concurrency-and-locking-strategies)
+7. [Concurrency and locking strategies](README.md#markdown-header-concurrency-and-locking-strategies)
 8. [TOP APIs](README.md#markdown-header-top-apis)
 
 * * *
@@ -116,7 +116,7 @@ AWS also allows to reserve the read and write capacity at Regional level for an 
 
 * * *
 
-# Concurreny and locking strategies
+# Concurrency and locking strategies
 
 A common issue that may came up in DynamoDB is about the consistency of the data when multiple users try to perform write operation at the same time and for the same item.
 DynamoDB doesn't support any locking mechanism and instead uses an Optimistic Locking strategy via one of the following two options:
