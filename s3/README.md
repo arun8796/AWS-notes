@@ -75,6 +75,7 @@ The Multipart upload API enables developers to upload large objects in parts. Th
 Multipart uploading is a three-step process: initiation, parts upload, completion.
 
 Upon receiving the complete multipart upload request, Amazon S3 constructs the object from the uploaded parts, and developers can then access the object usual. A list of all in-progress multipart uploads can be requested. The multipart API supports the stop and resume mechanism.
+The maximum size of the payload that a single PUT request can handle with the AWS S3 APIs is set to 5GB.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
@@ -86,7 +87,7 @@ S3 can be used to host a static website enabling an option that can be set at bu
 
 ```http://<bucket_name>.s3-website.<region>.amazonaws.com```
 
-If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesn�t allow Cross Origin Requests. There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
+If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesn't allow Cross Origin Requests. There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 

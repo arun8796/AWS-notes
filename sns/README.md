@@ -4,8 +4,9 @@
 2. [Subscription mechanism](README.md#markdown-header-subscription-mechanism)
 3. [Billing](README.md#markdown-header-billing)
 4. [Anathomy of an SNS notification](README.md#markdown-header-anathomy-of-an-sns-notification)
-5. [Mobile Push](README.md#markdown-header-mobile-push)
-6. [TOP APIs](README.md#markdown-header-top-apis)
+5. [Message attributes](README.md#markdown-header-message-attributes)
+6. [Mobile Push](README.md#markdown-header-mobile-push)
+7. [TOP APIs](README.md#markdown-header-top-apis)
 
 * * *
 
@@ -65,6 +66,21 @@ Signature | Base64-encoded "SHA1withRSA" signature of the Message, MessageId, Ty
 SignatureCertURL | The URL to the certificate that was used to sign the message.
 UnsubscribeURL | A URL that you can use to unsubscribe the endpoint from this topic.
 MessageAttributes | Attributes attached to the notification (mostly for mobile push).
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Message attributes
+
+Message attributes are used to further enrich the messages delivered to Amazon SQS endpoints via SNS. These attributes are optional, separated from, but sent along with, the message body and restricted in number (up to 10 attributes per message).
+Each message attribute consists of three main elements:
+- A Name. The message attribute name can contain the following characters: A-Z, a-z, 0-9, underscore(_), hyphen(-), and period (.). The name must not start or end with a period, and it should not have successive periods. The name is case sensitive and must be unique among all attribute names for the message. The name can be up to 256 characters long. The name cannot start with "AWS." or "Amazon." (or any variations in casing) because these prefixes are reserved for use by Amazon Web Services.
+- A Type. String, Number, and Binary.
+- A Value. The user-specified message attribute value.
+
+**Name, type, and value must not be empty or null. In addition, the message body should not be empty or null.**
+All parts of the message attribute, including name, type, and value, are included in the message size restriction, which is currently 256 KB.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
