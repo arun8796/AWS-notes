@@ -1,5 +1,5 @@
 
-## 1    Preface
+## 1. Preface
 
 S3 is a Regional AWS service that implements an object store in the Cloud where users can save their files. Objects are uploaded in remote containers, called **Buckets**, and every bucket is provided with a name that must be unique in the AWS domain, this is because AWS uses an universal namespace.
 Bucket names must use the following naming convention:
