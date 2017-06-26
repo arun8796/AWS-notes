@@ -13,20 +13,21 @@
 AWS CloudFormation is a service that gives developers a way to create a collection of AWS resources in an orderly and predictable fashion via a well defined scripting language that can be based on JSON or YAML.
 
 In CloudFormation developers create templates that are then uploaded into S3 and executed via the console or via the APIs. When a template is started a new Stack is being create and the outcome of this operation can be one one of the following two:
-- The stack succeeded, all the AWS resources described in the template were properly provisioned in AWS.
-- The stack failed, something went wrong during the execution, all the resources provisioned as part of the stack execution are automatically removed (Rollback).
+
+-The stack succeeded, all the AWS resources described in the template were properly provisioned in AWS.
+-The stack failed, something went wrong during the execution, all the resources provisioned as part of the stack execution are automatically removed (Rollback).
 
 There is no limit on the total number of templates that developers can create however there is a soft limit on the total number of Stacks that can be executed, default value is 200 (this soft limit can be however changed raising a support request with AWS). When a new stack need to be executed the following actions are required:
 
-- A unique stack name must be provided.
-- A template is selected.
-- If the template declares input parameters then these parameters must be provided by the user.
-- The stack is being created and when finished the template output information are returned to the user.
+-A unique stack name must be provided.
+-A template is selected.
+-If the template declares input parameters then these parameters must be provided by the user.
+-The stack is being created and when finished the template output information are returned to the user.
 
 For every already existing stack a users can also decide to:
 
-- Delete the stack entirely, in this case all the resources provisioned during the creation are disposed.
-- Update an existing stack, in this case CloudFrmation computes a **diff** between the new template and the resources already allocated in the Stack and only applies the difference.
+-Delete the stack entirely, in this case all the resources provisioned during the creation are disposed.
+-Update an existing stack, in this case CloudFrmation computes a **diff** between the new template and the resources already allocated in the Stack and only applies the difference.
 
 CloudFormation has built-in capabilities to install software when a stack is created and also work in conjunction with Chef and Puppet.
 
