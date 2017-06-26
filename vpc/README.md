@@ -2,9 +2,10 @@
 
 1. [Preface](README.md#markdown-header-preface)
 2. [VPC core components](README.md#markdown-header-vpc-core-components)
-    * [VPC](README.md#markdown-header-)
-    * [Subnet](README.md#markdown-header-)
-    * [Internet Gateway](README.md#markdown-header-)
+    * [VPC](README.md#markdown-header-vpc)
+    * [Subnet](README.md#markdown-header-subnet)
+    * [Internet Gateway](README.md#markdown-header-internet-gateway)
+    * [Internet Gateway](README.md#markdown-header-route-tables)
     * [NAT Gateway](README.md#markdown-header-)
     * [Peering Connection](README.md#markdown-header-)
 
@@ -60,11 +61,9 @@ When a new VPC is created the following default components are created automatic
 
 To simplify the deployment of AWS resources a **Default** VPC is always provided when a new AWS account is provisioned, the advise is not to delete this VPC as in order to re-create a Support ticket must be raised with AWS.
 
-
 ## Subnet
 
-Subnets are segments of a VPC’s IP address range where the user can place groups of isolated resources. **Subnets are always associated to one and only one AWS Availability Zone**.
-When a new subnet is cretaed the following information must be provided:
+Subnets are segments of a VPC’s IP address range where the user can place groups of isolated resources. **A max of 200 subnets per VPC can be allocated, Subnets are also always associated to one and only one AWS Availability Zone**. When a new subnet is cretaed the following information must be provided:
 
 - A subnet name.
 - The VPC the subnet belongs to.
@@ -79,9 +78,26 @@ When a new subnet is creted the console also shows how many IP addresses are ava
 - **10.0.0.3**. Reserved by AWS for future use.
 - **10.0.0.255**. Network broadcast address. **AWS do not support broadcast in a VPC, therefore address stays reserved.**.
 
+Subnet have the option to auto-assign a public IP address to all the resoures that are created within it. This option is not directly available when the subnet is first created through the consolle wizard but becomes available later on.
+
 ## Internet Gateway
 
-Internet Gateway: The Amazon VPC side of a connection to the public Internet.
+An Internet gateway, aka IGW, is a horizontally scaled, redundant, and highly available VPC component that allows communication between instances in a VPC and the Internet. An Internet gateway serves two purposes::
+
+- To provide a target in a VPC route tables for Internet-routable traffic
+- To perform network address translation (NAT) for instances that have been assigned public IPv4 addresses.
+
+An Internet gateway supports IPv4 and IPv6 traffic.
+
+When a new IGW is created a logic name is assigned to it is then necessary to attache it to an existing VPC.
+Every VPC can only have attached one and only one IGW.
+
+## Route Tables
+
+A route table contains a set of rules that are used to determine where network traffic is directed. Each subnet in a VPC must be associated with a route table; the table controls the routing for the subnet. A subnet can only be associated with one route table at a time, but is possible to  associate multiple subnets with the same route table.
+
+Subnets that are associated to a Route table that has a route to an IGW are by default Public Subnets whilst all the other can be considered private. 
+
 ## NAT Gateway
 
 A highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet.
