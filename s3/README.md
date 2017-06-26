@@ -12,8 +12,9 @@
     * [Encryption](README.md#markdown-header-encryption)
 7. [Versioning](README.md#markdown-header-versioning)    
 8. [Cross Region Replication](README.md#markdown-header-cross-region-replication)    
-8. [Lifecycle management](README.md#markdown-header-lifecycle-management)    
-8. [Transfer Acceleration](README.md#markdown-header-transfer-acceleration)    
+9. [Lifecycle management](README.md#markdown-header-lifecycle-management)
+10. [Transfer Acceleration](README.md#markdown-header-transfer-acceleration)
+11. [Logging](README.md#markdown-header-logging)
 
 * * *
 
@@ -213,5 +214,26 @@ bucketname.s3-accelerate.amazonaws.com
 ```
 
 In order to take advantages of the acceleration feature this new URL must be used by the client applications. Is also important to remember that **the name of the bucket used for Transfer Acceleration must be DNS-compliant and must not contain periods (".")**.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Logging
+
+Logging is a bucket level feature that allows to track all the request made to a bucket. Each access log record provides details about a single access request such as:
+
+- The requester.
+- The name of the bucket.
+- The request time.
+- The request action.
+- The response status.
+- The error code if any.
+
+To enable access logging user must:
+
+1. Turn on the log delivery feature on the bucket for which the user wants Amazon S3 to track the access logs.
+2. Specify the name of the target bucket where Amazon S3 save the access logs as objects.
+2. Grant the Amazon S3 Log Delivery group write permission on the bucket where logs are saved.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
