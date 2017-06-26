@@ -1,6 +1,6 @@
 # Table of Contents
 
-1. [Preface](README.md#markdown-headerpreface)
+1. [Preface](README.md#markdown-header-preface)
 2. [Design considerations](README.md#markdown-header-design-considerations)
 3. [Storage classes](README.md#markdown-header-storage-classes)
 4. [Multipart Upload](README.md#markdown-header-multipart-upload)
