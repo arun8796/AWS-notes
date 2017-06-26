@@ -8,15 +8,15 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 
 # Table of Contents
 
-1. [IAM - Identity & Access Management]()
-2. [VPC - Virtual Private Cloud]()
-3. [EC2 - Elastic Compute Cloud]()
+1. IAM - Identity & Access Management
+2. VPC - Virtual Private Cloud
+3. EC2 - Elastic Compute Cloud
 4. [S3 - Simple Storage Service](s3/README.md)
 5. [DynamoDB](dynamodb/README.md)
 6. [SQS - Simple Queue Service](sqs/README.md)
 7. [SNS - Simple Notification Service](sns/README.md)
 8. [SWF - Simple Worflow Service](swf/README.md) 
 9. [CloudFormation](cloudformation/README.md)
-10. [The Shared responsibility Model]()
+10. The Shared responsibility Model
 
 * * *
