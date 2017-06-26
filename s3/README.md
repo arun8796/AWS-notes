@@ -10,6 +10,11 @@
     6.2
     6.3
     6.4
+7. [Versioning](README.md#markdown-header-versioning)    
+8. [Cross Region Replication](README.md#markdown-header-cross-region-replication)    
+8. [Lifecycle management](README.md#markdown-header-lifecycle-management)    
+8. [Transfer Acceleration](README.md#markdown-header-transfer-acceleration)    
+
 
 * * *
 
@@ -138,6 +143,8 @@ ACLs are sub-resources that are attached to every S3 bucket and object and defin
 **A bucket can also either contain encrypted an unencrypted content. To specify that a file has to be encrypted at rest the **x-amz-server-side-encryption** header can be used when uploading the object.**
 **AES-256 is used for content encryption.**
 
+* * *
+
 # Versioning
 
 Versioning is a bucket-level feature that allows to keep multiple variants of an object in the same bucket and can be used to preserve, retrieve, and restore every version of every object stored in an Amazon S3 bucket.
@@ -145,6 +152,8 @@ Versioning is a bucket-level feature that allows to keep multiple variants of an
 
 The versioning state applies to all of the objects in a version-enable bucket. However is important to remember that objects stored in the bucket **before** enabling the versioning have an initial version ID of null. When versioning is enabled existing objects in the bucket do not change what instead changes is how Amazon S3 handles the objects in future requests.
 When an object is deleted into a version-enabled bucket a delete marker is created and the object is not visible anymore, upon deletion of the delete marker the object would be again visible in S3.
+
+* * *
 
 # Cross Region Replication
 
@@ -166,12 +175,16 @@ Is also important to remember that:
 - If a DELETE request specifies a particular object version ID to delete, Amazon S3 deletes that object version in the source bucket, but it does not replicate the deletion in the destination bucket (in other words, it does not delete the same object version from the destination bucket).
 - Upon restoration of a deletion marker on the source bucket the deletion action doesn't get cascaded to the destination bucket so the object stays marked as deleted.
 
+* * *
+
 # Lifecycle Management
 
 Lifecycle configuration enables users to specify the lifecycle management of objects in a bucket. The configuration is a set of one or more rules, where each rule defines an action for Amazon S3 to apply to a group of objects. These actions can be classified as follows:
 
 - **Transition actions**. In which users define when objects transition to another storage class. For example, you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation, or archive objects to the GLACIER storage class one year after creation.
 - **Expiration actions** � In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.
+
+* * *
 
 # Transfer Acceleration
  
