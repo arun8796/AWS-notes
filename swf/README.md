@@ -40,3 +40,5 @@ Workers and Deciders can be deployed either in the cloud (e.g. Amazon EC2 or Lam
 - Maximum registered domains – 100.
 - Maximum workflow and activity types – 10,000 each per domain.
 - Maximum workflow execution time – 1 year
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
