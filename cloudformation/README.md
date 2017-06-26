@@ -1,4 +1,14 @@
-## Preface
+# Table of Contents
+
+1. [Preface](README.md#markdown-header-preface)
+2. [Anathomy of a CloudFormation template](README.md#markdown-header-anathomy-of-a-cloudFormation-template)
+3. [Intrinsic Functions](README.md#markdown-header-intrinsic-functions)
+4. [Pricing](README.md#markdown-header-pricing)
+5. [TOP APIs](README.md#markdown-header-top-apis)
+
+* * *
+
+# Preface
 
 AWS CloudFormation is a service that gives developers a way to create a collection of AWS resources in an orderly and predictable fashion via a well defined scripting language that can be based on JSON or YAML.
 
@@ -22,7 +32,11 @@ CloudFormation has built-in capabilities to install software when a stack is cre
 
 The policy section of a CloudFormation template can also be used to define strategies to backup data when a stack is deleted.
 
-## Anathomy of a CloudFormation template
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Anathomy of a CloudFormation template
 
 ```
 {
@@ -70,7 +84,11 @@ The policy section of a CloudFormation template can also be used to define strat
 - **Resources** (required). Specifies the stack resources and their properties, such as an Amazon Elastic Compute Cloud instance or an Amazon Simple Storage Service bucket. You can refer to resources in the Resources and Outputs sections of the template.
 - **Outputs** (optional). Describes the values that are returned whenever you view your stack's properties. For example, you can declare an output for an S3 bucket name and then call the aws cloudformation describe-stacks AWS CLI command to view the name.
 
-##  Intrinsic Functions
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Intrinsic Functions
 
 Intrinsic functions in CloudFormation help developers to assign values to template properties that are not available until runtime, these can only be used in specific parts of a template: resource, outputs, metadata, and update policy attributes.
 Top Intrinsic functions to remember:
@@ -85,11 +103,19 @@ Fn::Ref | Returns the value of the specified parameter or resource. When you spe
 
 **Example**: Registration of a LoadBalancer DNS with a Route53 domain. As at the time the developer creates the template the LodBalancer **DNSName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DNSName** output property that is obtained once the AWS resource is created.
 
-## Pricing
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Pricing
 
 From a pricing perspective the AWS CloudFormation service is free of charge, user only pays the resources that are provisione as part of a stack creation. 
 
-## Top APIs to remember
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# TOP APIs
 
 Api | Description
 --- | ---
