@@ -1,3 +1,11 @@
+# Table of Contents
+
+1. [Preface](README.md#markdown-preface)
+2. [SWF vs SQS](README.md#markdown-header-swf-vs-sqs)
+3. [Limits](README.md#markdown-header-limits)
+
+* * *
+
 # Preface
 
 Amazon Simple Workflow Service (SWF) is a web service that makes it easy to coordinate work across distributed application components. The main components of SWF are:
@@ -12,12 +20,20 @@ Amazon Simple Workflow Service (SWF) is a web service that makes it easy to coor
 
 Workers and Deciders can be deployed either in the cloud (e.g. Amazon EC2 or Lambda) or on machines behind corporate firewalls.
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
 # SWF vs SQS
 
 - Amazon SWF API actions are task-oriented. Amazon SQS API actions are message-oriented.
 - Amazon SWF keeps track of all tasks and events in an application. Amazon SQS requires users to implement their own application-level tracking, especially if application uses multiple queues.
 - The Amazon SWF Console and visibility APIs provide an application-centric view that lets search for executions, drill down into an execution’s details, and administer executions. Amazon SQS 
 - Tasks are always received and processed in the exact same order as they have been defined. SQS can't benefit of such functionality.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
 
 # Limits
 
