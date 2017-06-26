@@ -147,3 +147,14 @@ Lifecycle configuration enables users to specify the lifecycle management of obj
 
 - **Transition actions**. In which users define when objects transition to another storage class. For example, you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation, or archive objects to the GLACIER storage class one year after creation.
 - **Expiration actions** � In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.
+
+# Transfer Acceleration
+ 
+Transfer Acceleration is a bucket level feature that enables fast, easy, and secure transfers of files over long distances between clients and an S3 bucket taking advantage of the Amazon CloudFront’s globally distributed edge locations network. As the data arrives at an edge location, data is routed to Amazon S3 over an optimized network path. 
+When using Transfer Acceleration, additional data transfer charges may apply also in addition to the canonical S3 bucket URL a new accelerated URL is created as follow:
+
+```
+bucketname.s3-accelerate.amazonaws.com
+```
+
+In order to take advantages of the acceleration feature this new URL must be used by the client applications. Is also important to remember that **the name of the bucket used for Transfer Acceleration must be DNS-compliant and must not contain periods (".")**.
