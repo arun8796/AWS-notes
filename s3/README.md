@@ -50,7 +50,7 @@ S3 can be used to host a static website enabling an option that can be set at bu
 
 ```http://<bucket_name>.s3-website.<region>.amazonaws.com```
 
-If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesn’t allow Cross Origin Requests. There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
+If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesnï¿½t allow Cross Origin Requests. There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
 
 # Security & Encryption
 
@@ -61,7 +61,7 @@ From a Security perspective two aspects must be taken into consideration:
 
 By default all the newly created buckets are **PRIVATE** by default, administrator can then use **IAM policies**, **Bucket policies** ad **ACLs** to control access to content from other users, roles and groups.
 
-> ## IAM policies
+## IAM policies
 
 Specify what actions are allowed or denied on what AWS resources, these can then be attach to IAM users, groups, or roles, which are then subject to the permissions defined.
 
@@ -106,7 +106,7 @@ ACLs are sub-resources that are attached to every S3 bucket and object and defin
 - **Encryption at rest**. Which refers to the file persisted on the AWS servers. In this case S3 supports four types of mechanisms:
     - **Server Side**
         - **SSE-S3**. Amazon handles key management and key protection using multiple layers of security. This option has to be chosen when is acceptable to have Amazon managing keys.
-        - **SSE-C**. Amazon S3 performs the encryption and decryption of the objects while the user **retains control of the keys used to encrypt objects**. With SSE-C users  don’t need to implement or use a client-side library to perform the encryption and decryption of objects but **are in charge of managing the keys that are used to encrypt and decrypt objects**.
+        - **SSE-C**. Amazon S3 performs the encryption and decryption of the objects while the user **retains control of the keys used to encrypt objects**. With SSE-C users  donï¿½t need to implement or use a client-side library to perform the encryption and decryption of objects but **are in charge of managing the keys that are used to encrypt and decrypt objects**.
         - **SSE-KMS**. AWS Key Management Service (AWS KMS), similare to SS3-S3 but with extra level of security built in. A master key envelop is introduced to further protect the encryption keys and Cloud trail to audit actions. AWS KMS is also integrated with other AWS services including: EBS, s3, Amazon Redshift, Amazon Elastic Transcoder, Amazon WorkMail,RDS,.
     - **Client Side**. Encryption is fully  managed client side using specific encryption libraries.
 
@@ -146,4 +146,4 @@ Is also important to remember that:
 Lifecycle configuration enables users to specify the lifecycle management of objects in a bucket. The configuration is a set of one or more rules, where each rule defines an action for Amazon S3 to apply to a group of objects. These actions can be classified as follows:
 
 - **Transition actions**. In which users define when objects transition to another storage class. For example, you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation, or archive objects to the GLACIER storage class one year after creation.
-- **Expiration actions** – In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.
+- **Expiration actions** ï¿½ In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.
