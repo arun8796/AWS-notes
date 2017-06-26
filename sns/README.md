@@ -1,4 +1,15 @@
-## Preface
+# Table of Contents
+
+1. [Preface](README.md#markdown-header-preface)
+2. [Subscription mechanism](README.md#markdown-header-subscription-mechanism)
+3. [Billing](README.md#markdown-header-billing)
+4. [Anathomy of an SNS notification](README.md#markdown-header-anathomy-of-an-sns-notification)
+5. [Mobile Push](README.md#markdown-header-mobile-push)
+6. [TOP APIs](README.md#markdown-header-top-apis)
+
+* * *
+
+# Preface
 
 SNS is an AWS Regional service provided by AWS that can be used to send notifications. SNS uses **Topics** as the main message channels and a push mechanism to deliver notifications to topic subscribers.
 This means that subscribers are notified in real time and don't have to check for new messages like in SQS. Supported transport protocols at the time of writing for SNS are:
@@ -11,8 +22,11 @@ This means that subscribers are notified in real time and don't have to check fo
 
 Users can provision up to 100,000 topics, this limit can be changed via AWS support.
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
 
-## Subscription mechanism
+* * *
+
+# Subscription mechanism
 
 When a new subscriber decides to join a topic its subscription has to be first confirmed, a Token is always included in the subscription request and is valid for **3 days**, multiple subscribers are allowed on the same topic and all of them will receive the notification upon confirmation.
 Subscription confirmations works differently based on the transport protocol chosen:
@@ -23,12 +37,20 @@ Subscription confirmations works differently based on the transport protocol cho
 
 When a new message is sent on a topic the user can decide to customise the message format for a specific transport or let AWS manage the format. The reason why SNS support either Email and Email JSON is because the first is meant to be used by end-users whilst the second by Applications.
 
-## Billing
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Billing
 
 With Amazon SNS, there is no minimum fee and you pay only for what you use based on the transport chosen. Cost can be seens on the AWS website. With the exception of SMS messages, Amazon SNS messages can contain up to 256 KB of text data, including XML, JSON and unformatted text.
 Each 64KB chunk of published data is billed as 1 request. For example, a single API call with a 256KB payload will be billed as four requests.
 
-## Anathomy of an SNS notification
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Anathomy of an SNS notification
 
 # | Description
 --- | ---
@@ -44,7 +66,11 @@ SignatureCertURL | The URL to the certificate that was used to sign the message.
 UnsubscribeURL | A URL that you can use to unsubscribe the endpoint from this topic.
 MessageAttributes | Attributes attached to the notification (mostly for mobile push).
 
-## Mobile Push
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Mobile Push
 
 SNS is capable of sendind notification to mobile devices. Currently, the following push notifications platforms are supported:
 
@@ -65,7 +91,11 @@ To begin using Amazon SNS mobile push notifications, you need the following:
 
 ** A bulk upload of existing device tokens to Amazon SNS, either via the console interface or API is possible.**
 
-## Top APIs to remember
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Top APIs
 
 API | Description
 --- | ---
@@ -79,3 +109,5 @@ Unsubscribe | Deletes a subscription.
 ConfirmSubscription | Verifies an endpoint owner's intent to receive messages by validating the token sent to the endpoint by an earlier Subscribe action.
 CreatePlatformApplication | Creates a platform application object for one of the supported push notification services
 CreatePlatformEndpoint | Creates an endpoint for a device and mobile app on one of the supported push notification services
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
