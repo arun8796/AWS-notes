@@ -5,7 +5,7 @@
     * [VPC](README.md#markdown-header-vpc)
     * [Subnet](README.md#markdown-header-subnet)
     * [Internet Gateway](README.md#markdown-header-internet-gateway)
-    * [Internet Gateway](README.md#markdown-header-route-tables)
+    * [Route tables](README.md#markdown-header-route-tables)
     * [NAT Instances and NAT Gateways](README.md#markdown-header-nat-instances-and-nat-gateways)
 
 * * *
@@ -91,7 +91,7 @@ An Internet gateway supports IPv4 and IPv6 traffic.
 When a new IGW is created a logic name is assigned to it is then necessary to attache it to an existing VPC.
 Every VPC can only have attached one and only one IGW.
 
-## Route Tables
+## Route tables
 
 A route table contains a set of rules that are used to determine where network traffic is directed. Each subnet in a VPC must be associated with a route table; the table controls the routing for the subnet. A subnet can only be associated with one route table at a time, but is possible to  associate multiple subnets with the same route table.
 
