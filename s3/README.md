@@ -2,8 +2,8 @@
 
 Topic | 
 ---   | ---
-Preface |
-Design Considerations |
+Preface | [link](README.md#preface)
+Design Considerations | [link](README.md#dc)
 
 ## 1. Preface
 
