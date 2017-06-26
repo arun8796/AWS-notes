@@ -47,6 +47,8 @@ A successfully Operation in S3 always returns the HTTP 200 response code.
 
 S3 has been designed to follow the lexicographic order of the keys when persisting and retrieving objects, this has an important impact on overall performance. When the number of operation for a specific bucket is intensive AWS can decide to create partitions over the object keys to allow a faster access to the information, in this case if the key used to persist the objects follow a sequential order there is an high probability that the partition is always the same and this may degrade the overall performances. To avoid this issue some level of randomness should be added to the key string when persisting objects.
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
 * * *
 
 # Storage classes
@@ -62,6 +64,8 @@ Glacier                   | 99.99999999999% Durability | N/A                    
 
 The pricing model for S3 services charges the following elements: storage, number of requests, storage management, data-transfer and transfer-acceleration (through Content Delivery Network aka CDN).
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
 * * *
 
 # Multipart Upload
@@ -70,6 +74,8 @@ The Multipart upload API enables developers to upload large objects in parts. Th
 Multipart uploading is a three-step process: initiation, parts upload, completion.
 
 Upon receiving the complete multipart upload request, Amazon S3 constructs the object from the uploaded parts, and developers can then access the object usual. A list of all in-progress multipart uploads can be requested. The multipart API supports the stop and resume mechanism.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 * * *
 
@@ -80,6 +86,8 @@ S3 can be used to host a static website enabling an option that can be set at bu
 ```http://<bucket_name>.s3-website.<region>.amazonaws.com```
 
 If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesn�t allow Cross Origin Requests. There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 * * *
 
@@ -144,6 +152,8 @@ ACLs are sub-resources that are attached to every S3 bucket and object and defin
 **A bucket can also either contain encrypted an unencrypted content. To specify that a file has to be encrypted at rest the **x-amz-server-side-encryption** header can be used when uploading the object.**
 **AES-256 is used for content encryption.**
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
 * * *
 
 # Versioning
@@ -153,6 +163,8 @@ Versioning is a bucket-level feature that allows to keep multiple variants of an
 
 The versioning state applies to all of the objects in a version-enable bucket. However is important to remember that objects stored in the bucket **before** enabling the versioning have an initial version ID of null. When versioning is enabled existing objects in the bucket do not change what instead changes is how Amazon S3 handles the objects in future requests.
 When an object is deleted into a version-enabled bucket a delete marker is created and the object is not visible anymore, upon deletion of the delete marker the object would be again visible in S3.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 * * *
 
@@ -176,6 +188,8 @@ Is also important to remember that:
 - If a DELETE request specifies a particular object version ID to delete, Amazon S3 deletes that object version in the source bucket, but it does not replicate the deletion in the destination bucket (in other words, it does not delete the same object version from the destination bucket).
 - Upon restoration of a deletion marker on the source bucket the deletion action doesn't get cascaded to the destination bucket so the object stays marked as deleted.
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
 * * *
 
 # Lifecycle Management
@@ -183,7 +197,9 @@ Is also important to remember that:
 Lifecycle configuration enables users to specify the lifecycle management of objects in a bucket. The configuration is a set of one or more rules, where each rule defines an action for Amazon S3 to apply to a group of objects. These actions can be classified as follows:
 
 - **Transition actions**. In which users define when objects transition to another storage class. For example, you may choose to transition objects to the STANDARD_IA (IA, for infrequent access) storage class 30 days after creation, or archive objects to the GLACIER storage class one year after creation.
-- **Expiration actions** � In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.
+- **Expiration actions**. In which you specify when the objects expire. Then Amazon S3 deletes the expired objects on your behalf.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 * * *
 
@@ -197,3 +213,5 @@ bucketname.s3-accelerate.amazonaws.com
 ```
 
 In order to take advantages of the acceleration feature this new URL must be used by the client applications. Is also important to remember that **the name of the bucket used for Transfer Acceleration must be DNS-compliant and must not contain periods (".")**.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
