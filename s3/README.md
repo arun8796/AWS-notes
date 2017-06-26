@@ -52,17 +52,59 @@ S3 can be used to host a static website enabling an option that can be set at bu
 
 If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesn’t allow Cross Origin Requests. There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
 
-# Encryption
+# Security & Encryption
 
-From an Encryption perspective tho aspects have to be considered to gurante the right level of security:
+From a Security perspective two aspects must be taken into consideration:
+
+ 1. How documents get accessed by users.
+ 2. How information are persisted and maintained at rest and when are in transit over the network.
+
+By default all the newly created buckets are **PRIVATE** by default, administrator can then use **IAM policies**, **Bucket policies** ad **ACLs** to control access to content from other users, roles and groups.
+
+- **IAM policies**. Specify what actions are allowed or denied on what AWS resources, these can then be attach to IAM users, groups, or roles, which are then subject to the permissions defined.
+```
+{
+  "Version": "2012-10-17",
+  "Statement":[{
+    "Effect": "Allow",
+    "Action": "s3:*",
+    "Resource": ["arn:aws:s3:::my_bucket",
+                 "arn:aws:s3:::my_bucket/*"]
+    }
+  ]
+}
+```
+**Notice that in an IAM policy the Principal is not specified as is the policy itself that gets attached via IAM to the user, role and or group.**
+- **S3 bucket policies**. These policies are attached only to S3 buckets and specify what actions are allowed or denied for which principals on the bucket that the policy is attached to. **The permissions specified in the bucket policy apply to all the objects in the bucket.**
+```
+{
+  "Version":"2012-10-17",
+  "Statement":[
+    {
+      "Sid":"AddCannedAcl",
+      "Effect":"Allow",
+      "Principal": "arn:aws:iam::111122223333:user/Carlo"},
+      "Action":["s3:PutObject","s3:PutObjectAcl"],
+      "Resource":["arn:aws:s3:::examplebucket/*"]
+    }
+  ]
+}
+```
+**Notice that in a Bucket policy the Principal is mandatory.**
+- **ACLs**. ACLs are sub-resources that are attached to every S3 bucket and object and defines which AWS accounts or groups are granted access and the type of access. Under certain circumstances ACLs might better meet user needs as allow to manage permissions on individual objects within a bucket (more granular control). As a general rule, AWS recommends using S3 bucket policies or IAM policies for access control. S3 ACLs is a legacy access control mechanism that predates IAM.
+
+From an Encryption perspective following two aspects must be taken into consideration:
 
 - **Encryption in transit**. That is when the file moves over the network from one point to another, S3 always encrypts file in transit using the HTTPS protocol.
-- **Encryption at rest**. Which refers to the file persisted on the AWS servers. In this case S3 supports three types of encryption mechanisms:
-    - **SSE-S3**. Amazon handles key management and key protection using multiple layers of security. This option has to be choosen when is acceptable to have Amazon managing keys.
-    - **SSE-C**. Leverage Amazon S3 to perform the encryption and decryption of the objects while **retaining control of the keys used to encrypt objects**. With SSE-C, you don’t need to implement or use a client-side library to perform the encryption and decryption of objects you store in Amazon S3, but you **do need to manage the keys that you send to Amazon S3 to encrypt and decrypt objects**. Use SSE-C if you want to maintain your own encryption keys, but don’t want to implement or leverage a client-side encryption library.
-    - **SSE-KMS**. AWS Key Management Service (AWS KMS) is a managed service that makes it easy for the user to create and control the encryption keys used to encrypt data. AWS KMS is integrated with other AWS services including: EBS, s3, Amazon Redshift, Amazon Elastic Transcoder, Amazon WorkMail,RDS, and others to make it simple to encrypt your data with encryption keys that you manage. AWS KMS is also integrated with AWS CloudTrail to provide you with key usage logs to help meet your auditing, regulatory and compliance needs.
+- **Encryption at rest**. Which refers to the file persisted on the AWS servers. In this case S3 supports four types of mechanisms:
+    - **Server Side**
+        - **SSE-S3**. Amazon handles key management and key protection using multiple layers of security. This option has to be chosen when is acceptable to have Amazon managing keys.
+        - **SSE-C**. Amazon S3 performs the encryption and decryption of the objects while the user **retains control of the keys used to encrypt objects**. With SSE-C users  don’t need to implement or use a client-side library to perform the encryption and decryption of objects but **are in charge of managing the keys that are used to encrypt and decrypt objects**.
+        - **SSE-KMS**. AWS Key Management Service (AWS KMS), similare to SS3-S3 but with extra level of security built in. A master key envelop is introduced to further protect the encryption keys and Cloud trail to audit actions. AWS KMS is also integrated with other AWS services including: EBS, s3, Amazon Redshift, Amazon Elastic Transcoder, Amazon WorkMail,RDS,.
+    - **Client Side**. Encryption is fully  managed client side using specific encryption libraries.
 
-A bucket can also either contain encrypted an unencrypted content. To specify that a file has to be encrypted at rest the **x-amz-server-side-encryption** header can be used when uploading the object, AES-256 is used for content encryption.
+**A bucket can also either contain encrypted an unencrypted content. To specify that a file has to be encrypted at rest the **x-amz-server-side-encryption** header can be used when uploading the object.**
+**AES-256 is used for content encryption.**
 
 # Versioning
 
