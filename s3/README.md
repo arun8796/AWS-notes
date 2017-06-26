@@ -1,6 +1,6 @@
 # Table of Contents
 
-1. [Preface](README.md#markdown-header-multipart-upload)
+1. [Preface](README.md#markdown-headerpreface)
 2. [Design considerations](README.md#markdown-header-design-considerations)
 3. [Storage classes](README.md#markdown-header-storage-classes)
 4. [Multipart Upload](README.md#markdown-header-multipart-upload)
@@ -10,6 +10,8 @@
     6.2
     6.3
     6.4
+
+* * *
 
 # Preface
 
@@ -28,6 +30,8 @@ A unique key, that can be constructed to mimic a hierarchical structure, has to 
 Users can provision up to 100 buckets per AWS account, **this is a soft limit can be changed via AWS support**, and the size of a single file can vary between 0 bytes and 5TB, **this is an hard limit and cannot be changed**.
 There is no formal limit on the number of files and/or total size that a bucket can have also, for files exceeding 100 MBytes, the Multi Part upload must be used (see later for a detailed description).
 
+* * *
+
 # Design considerations
 
 Objects in S3 are made of: a key, a value (the bytes representing the file), a Version id (optional), some metadata and some sub-resources (which includes: Access Control Lists and Torrent, used to support the bit-torrent protocol).
@@ -36,6 +40,8 @@ Objects in S3 are made of: a key, a value (the bytes representing the file), a V
 A successfully Operation in S3 always returns the HTTP 200 response code.
 
 S3 has been designed to follow the lexicographic order of the keys when persisting and retrieving objects, this has an important impact on overall performance. When the number of operation for a specific bucket is intensive AWS can decide to create partitions over the object keys to allow a faster access to the information, in this case if the key used to persist the objects follow a sequential order there is an high probability that the partition is always the same and this may degrade the overall performances. To avoid this issue some level of randomness should be added to the key string when persisting objects.
+
+* * *
 
 # Storage classes
 
@@ -50,12 +56,16 @@ Glacier                   | 99.99999999999% Durability | N/A                    
 
 The pricing model for S3 services charges the following elements: storage, number of requests, storage management, data-transfer and transfer-acceleration (through Content Delivery Network aka CDN).
 
+* * *
+
 # Multipart Upload
 
 The Multipart upload API enables developers to upload large objects in parts. This API can be used to upload new large objects or make a copy of an existing object.
 Multipart uploading is a three-step process: initiation, parts upload, completion.
 
 Upon receiving the complete multipart upload request, Amazon S3 constructs the object from the uploaded parts, and developers can then access the object usual. A list of all in-progress multipart uploads can be requested. The multipart API supports the stop and resume mechanism.
+
+* * *
 
 # Static website hosting and CORS
 
@@ -64,6 +74,8 @@ S3 can be used to host a static website enabling an option that can be set at bu
 ```http://<bucket_name>.s3-website.<region>.amazonaws.com```
 
 If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesn�t allow Cross Origin Requests. There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
+
+* * *
 
 # Security and Encryption
 
