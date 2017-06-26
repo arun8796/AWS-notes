@@ -62,34 +62,29 @@ From a Security perspective two aspects must be taken into consideration:
 By default all the newly created buckets are **PRIVATE** by default, administrator can then use **IAM policies**, **Bucket policies** ad **ACLs** to control access to content from other users, roles and groups.
 
 - **IAM policies**. Specify what actions are allowed or denied on what AWS resources, these can then be attach to IAM users, groups, or roles, which are then subject to the permissions defined.
-```
-{
-  "Version": "2012-10-17",
-  "Statement":[{
-    "Effect": "Allow",
-    "Action": "s3:*",
-    "Resource": ["arn:aws:s3:::my_bucket",
-                 "arn:aws:s3:::my_bucket/*"]
+    ```
+    {
+        "Version": "2012-10-17",
+        "Statement":[{
+            "Effect": "Allow",
+            "Action": "s3:*",
+            "Resource": ["arn:aws:s3:::my_bucket","arn:aws:s3:::my_bucket/*"]
+         }]
     }
-  ]
-}
-```
+    ```
 **Notice that in an IAM policy the Principal is not specified as is the policy itself that gets attached via IAM to the user, role and or group.**
 - **S3 bucket policies**. These policies are attached only to S3 buckets and specify what actions are allowed or denied for which principals on the bucket that the policy is attached to. **The permissions specified in the bucket policy apply to all the objects in the bucket.**
-```
-{
-  "Version":"2012-10-17",
-  "Statement":[
+    ```
     {
-      "Sid":"AddCannedAcl",
-      "Effect":"Allow",
-      "Principal": "arn:aws:iam::111122223333:user/Carlo"},
-      "Action":["s3:PutObject","s3:PutObjectAcl"],
-      "Resource":["arn:aws:s3:::examplebucket/*"]
+        "Version":"2012-10-17",
+        "Statement":[{
+            "Effect":"Allow",
+            "Principal": "arn:aws:iam::111122223333:user/Carlo"},
+            "Action": "s3:*",
+            "Resource": ["arn:aws:s3:::my_bucket","arn:aws:s3:::my_bucket/*"]
+        }]
     }
-  ]
-}
-```
+    ```
 **Notice that in a Bucket policy the Principal is mandatory.**
 - **ACLs**. ACLs are sub-resources that are attached to every S3 bucket and object and defines which AWS accounts or groups are granted access and the type of access. Under certain circumstances ACLs might better meet user needs as allow to manage permissions on individual objects within a bucket (more granular control). As a general rule, AWS recommends using S3 bucket policies or IAM policies for access control. S3 ACLs is a legacy access control mechanism that predates IAM.
 
