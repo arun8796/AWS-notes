@@ -97,7 +97,17 @@ A route table contains a set of rules that are used to determine where network t
 
 Subnets that are associated to a Route table that has a route to an IGW are by default Public Subnets whilst all the other can be considered private. 
 
+
+-----------------------------------------------
+
 ## NAT Instances and NAT Gateways
+
+NAT instance is an EC2 instance always deployed into the public subnet Change Source DESTINATION Check
+Disabling Source/Destination Checks
+
+Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself. Therefore, you must disable source/destination checks on the NAT instance.
+
+You can disable the SrcDestCheck attribute for a NAT instance that's either running or stopped using the console or the command line.
 
 A highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet.
 
