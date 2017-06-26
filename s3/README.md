@@ -7,9 +7,9 @@
 5. [Static website hosting and CORS](README.md#markdown-header-static-website-hosting-and-cors)
 6. [Security and Encryption](README.md#markdown-header-security-and-encryption)
     6.1 [IAM policies](README.md#markdown-header-iam-policies)
-    6.2
-    6.3
-    6.4
+    6.2 [S3 bucket policies](README.md#markdown-header-s3-bucket-policies)
+    6.3 [ACLs](README.md#markdown-header-acls)
+    6.4 [Encryption](README.md#markdown-header-encryption)
 7. [Versioning](README.md#markdown-header-versioning)    
 8. [Cross Region Replication](README.md#markdown-header-cross-region-replication)    
 8. [Lifecycle management](README.md#markdown-header-lifecycle-management)    
