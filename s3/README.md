@@ -2,7 +2,7 @@
 
 Topic | 
 ---   | ---
-Preface | [link](README.md#preface)
+Preface | [link](README.md#markdown-header-multipart-upload)
 Design Considerations | [link](README.md#dc)
 
 ## 1. Preface
@@ -44,7 +44,7 @@ Glacier                   | 99.99999999999% Durability | N/A                    
 
 The pricing model for S3 services charges the following elements: storage, number of requests, storage management, data-transfer and transfer-acceleration (through Content Delivery Network aka CDN).
 
-## Multipart Upload <a name="mu"></a>
+## Multipart Upload
 
 The Multipart upload API enables developers to upload large objects in parts. This API can be used to upload new large objects or make a copy of an existing object.
 Multipart uploading is a three-step process: initiation, parts upload, completion.
