@@ -15,7 +15,6 @@
 8. [Lifecycle management](README.md#markdown-header-lifecycle-management)    
 8. [Transfer Acceleration](README.md#markdown-header-transfer-acceleration)    
 
-
 * * *
 
 # Preface
@@ -34,6 +33,8 @@ A unique key, that can be constructed to mimic a hierarchical structure, has to 
 
 Users can provision up to 100 buckets per AWS account, **this is a soft limit can be changed via AWS support**, and the size of a single file can vary between 0 bytes and 5TB, **this is an hard limit and cannot be changed**.
 There is no formal limit on the number of files and/or total size that a bucket can have also, for files exceeding 100 MBytes, the Multi Part upload must be used (see later for a detailed description).
+
+[(back to the top)](README.md#markdown-header-table-of-contents)
 
 * * *
 
