@@ -85,7 +85,8 @@ Query by default are always eventually consistent but thes behaviour can be chan
 
 A **Scan** operation just examines every item in the table and returns all the attributes on the item, this behaviour can be changes setting a **ProjectionExpresison**. The Scan operation supports eventually consistent, default, and consistent reads.
 
-For performance reason teh developer should always try to design DynamoDB tables in a way that an benefit of indexes so that the Scan operation can be avoided.
+For performance reason the developer should always try to design DynamoDB tables in a way that can benefit of indexes so that the Scan operation can be avoided.
+Any item collection is also subject to a 10GB limit.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 

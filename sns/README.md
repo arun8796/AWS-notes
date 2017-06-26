@@ -21,7 +21,7 @@ This means that subscribers are notified in real time and don't have to check fo
 - SMS, Mobile Push.
 - Lambda.
 
-Users can provision up to 100,000 topics, this limit can be changed via AWS support.
+Users can provision up to 100,000 topics, this limit can be changed via AWS support. Topic name can also only contain up to 256 characters in total.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
