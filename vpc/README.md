@@ -148,7 +148,18 @@ An ephemeral port is a short-lived endpoint that is created by the operating sys
 
 A VPC peering connection is a networking connection between two VPCs that enables to route traffic between them. Instances in either VPC can communicate with each other as if they are within the same network. VPC peering connection can be configured between VPCs in the sme AWS account, or with a VPC in another AWS account. In both cases, the VPCs must be in the same region.
 
-AWS uses the existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection, and does not rely on a separate piece of physical hardware. There is no single point of failure for communication or a bandwidth bottleneck. Few scenarios to keep in mind are:
+AWS uses the existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection, and does not rely on a separate piece of physical hardware. There is no single point of failure for communication or a bandwidth bottleneck. In order to create a VPC the following information/action are needed:
+
+- Peering connection name tag.
+- VPC (Requester). The VPC in the customer account with which we want to create the VPC peering connection.
+- Another VPC to peer with.
+
+Upon Peer creation two more actions are needed:
+
+- Enbale the peer to Accept Request.
+- Add an entry to the VPC route tables to enable traffic to be directed between the peered VPCs. 
+
+Few scenarios to keep in mind are:
 
 - **Overlapping CIDR blocks**. Customer cannot create a VPC peering connection between VPCs with matching or overlapping IPv4 CIDR blocks. 
 - **Transitive Peering**. Lets assume we have a VPC peering connection between VPC-A and VPC-B, and between VPC-A and VPC-C. There is no VPC peering connection between VPC-B and VPC-C. Customer cannot route packets directly from VPC-B to VPC-C through VPC-A. as peering is not transitive
