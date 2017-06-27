@@ -8,6 +8,7 @@
     * [Route tables](README.md#markdown-header-route-tables)
     * [NAT Instances and NAT Gateways](README.md#markdown-header-nat-instances-and-nat-gateways)
     * [Network Access Control List](README.md#markdown-header-network-access-control-list)
+    * [Peering Connection](README.md#markdown-header-peering-connection)
 
 * * *
 
@@ -143,12 +144,20 @@ A common exam question is about DDOS attachk and IP blacklisting, in this case N
 
 An ephemeral port is a short-lived endpoint that is created by the operating system when a program requests any available user port. The operating system selects the port number from a predefined range, typically between 1024 and 65535, and releases the port after the related TCP connection terminates. When an inbound request is received the response is usually sent over an ephemeral port that is allocated on the fly by the OS, this is an important concept to keep in mind when troubleshouting issue in VPC up as the problem may be caused by a NACL that doesn't ALLOW traffic through ephemeral ports.
 
-------------------------------------------------------------------------------------
-
-
 ## Peering Connection
 
-A peering connection enables you to route traffic via private IP addresses between two peered VPCs.
+A VPC peering connection is a networking connection between two VPCs that enables to route traffic between them. Instances in either VPC can communicate with each other as if they are within the same network. VPC peering connection can be configured between VPCs in the sme AWS account, or with a VPC in another AWS account. In both cases, the VPCs must be in the same region.
+
+AWS uses the existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection, and does not rely on a separate piece of physical hardware. There is no single point of failure for communication or a bandwidth bottleneck. Few scenarios to keep in mind are:
+
+- **Overlapping CIDR blocks**. Customer cannot create a VPC peering connection between VPCs with matching or overlapping IPv4 CIDR blocks. 
+- **Transitive Peering**. Lets assume we have a VPC peering connection between VPC-A and VPC-B, and between VPC-A and VPC-C. There is no VPC peering connection between VPC-B and VPC-C. Customer cannot route packets directly from VPC-B to VPC-C through VPC-A. as peering is not transitive
+- **Edge to Edge Routing Through a Gateway or Private Connection**. If VPC-A and VPC-B are peered, and VPC-A has any of the connections described below, then instances in VPC-B cannot use the connection to access resources on the other side of the connection. Similarly, resources on the other side of a connection cannot use the connection to access VPC-B.
+	* A VPN connection or an AWS Direct Connect connection to a corporate network.
+	* An Internet connection through an Internet gateway.
+    * An Internet connection in a private subnet through a NAT device.
+    * A VPC endpoint to an AWS service; for example, an endpoint to Amazon S3.
+    * A ClassicLink connection.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
