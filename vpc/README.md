@@ -7,6 +7,7 @@
     * [Internet Gateway](README.md#markdown-header-internet-gateway)
     * [Route tables](README.md#markdown-header-route-tables)
     * [NAT Instances and NAT Gateways](README.md#markdown-header-nat-instances-and-nat-gateways)
+    * [Network Access Control List](README.md#markdown-header-network-access-control-list)
 
 * * *
 
@@ -93,23 +94,33 @@ Every VPC can only have attached one and only one IGW.
 
 ## Route tables
 
-A route table contains a set of rules that are used to determine where network traffic is directed. Each subnet in a VPC must be associated with a route table; the table controls the routing for the subnet. A subnet can only be associated with one route table at a time, but is possible to  associate multiple subnets with the same route table.
-
-Subnets that are associated to a Route table that has a route to an IGW are by default Public Subnets whilst all the other can be considered private. 
-
-
------------------------------------------------
+A route table contains a set of rules that are used to determine where network traffic is directed. Each subnet in a VPC must be associated with one and only one route table at a time, but is possible to associate multiple subnet with the same route table.
+By definition a Subnet that is associated to a Route table that has a route to an Internet Gateway is a **Public Subnet**, whilst all that subnet that are associted to a Route table that doesn't have such routing rule can be considered **Private**.
 
 ## NAT Instances and NAT Gateways
 
-NAT instance is an EC2 instance always deployed into the public subnet Change Source DESTINATION Check
-Disabling Source/Destination Checks
+Sometime resources in private subnet require an Internet Access (e.g. an EC2 instance that needs to download software updates), for this purpose 2 possible strategies can be used:
 
-Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself. Therefore, you must disable source/destination checks on the NAT instance.
+- **NAT instance**. Nowadays this may be considered a legacy approach, it represents the first solution that AWS provided to its customers for the sole purpose of connecting instances in private subnet to the Internet (prior to 2016 when the NAT gateways was introduced). A NAT instance is basically an EC2 instance, AWS provides several AMIs to implement the NAT server, that can deployed in a public subnet to serve outbound internet traffic to instances located into private subnet. In order to deploy a NAT instance the following actions are required:
+    * Deploy an EC2 instance in the **public subnet** of the chosen VPC using one of the designated AWS NAT AMIs. When creating the instance a Security Group must be chosen.
+    * Disable, on the EC2 instance networking configuration the **Source/Destination Checks** option. Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself.
+    * Add a new route on the routing table that is assigned to the private subnet to flow the traffic through the NAT instance in the public subnet.
+- **NAT Gateway**. This is an highly available, managed Network Address Translation (NAT) service that resources in a private subnet can use to access the Internet. When a new NAT Gateway is created two main information must be provided:
+    * A public subnet where the Gateway service will be deployed.
+    * An allocated Elastic IP Address to be used by the Gateway.
+  Upon creation of the NAT Gateway a new route on the routing table that is assigned to the private subnet to flow the traffic through the NAT instance in the public subnet must be created.
 
-You can disable the SrcDestCheck attribute for a NAT instance that's either running or stopped using the console or the command line.
+An important consideration to keep in mind about NAT instances is that these are fully managed by the customer and may represent a Single point of failure as well a network bottleneck for Internet access for private subnet. Let's tackle this consideration separately:
 
-A highly available, managed Network Address Translation (NAT) service for your resources in a private subnet to access the Internet.
+- Fully managed by the user. As NAT instances are effectively EC2 instances the customer is in charge of patching and maintaining the instance itself.
+- Single point of failure. Again due to their nature, of instance, a fault may always happen an involve the instance itself or the AZ where it has been deployed. If this happens private subnet would not be able to access the Internet anymore. AWS always suggests to implement redundancy on NAT instances using AutoScaling groups.
+- Network bottleneck. As stated in the documentation NAT instances max bandwidth is strictly related to the max bandwidth available at the instance level. Smaller is the instance capacity reduced will be the bandwidth available for the Internet Access.
+
+Such considerations don't apply for NAT Gateways as in this case the service is fully managed by AWS.
+
+------------------------------------------------------------------------------------
+
+## Network Access Control List
 
 ## Peering Connection
 
