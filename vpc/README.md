@@ -118,9 +118,33 @@ An important consideration to keep in mind about NAT instances is that these are
 
 Such considerations don't apply for NAT Gateways as in this case the service is fully managed by AWS.
 
+## Network Access Control List
+
+A network access control list, aka NACL, is an optional layer of security for VPCs that acts as a firewall for controlling traffic in and out of one or more subnets. VPC automatically comes with a modifiable default NACL that by default allows all inbound and outbound traffic.
+
+Each subnet in a VPC must be associated with a network ACL, however if a subnet is not explicitly associate then the default NACL, provisioned when the VPC was creared, is automaitlcally selected. Network ACL can be associated to multiple subnets at the same time however a subnet can be associated with one and only one NACL at a time. Custom network ACLs by default denies all inbound and outbound traffic until new rules are added. When a new NACL is cretaed, and before definining the rules, the following information must be provided:
+
+- A logical name.
+- A target VPC.
+
+A network ACL contains a numbered list of rules that are evaluate in order, starting with the lowest numbered rule, to determine whether traffic is allowed in or out of any subnet associated with the network ACL. The highest number that can be used for a rule is 32766 AWS recommends creating rules with rule numbers that are multiples of 100, so that new rules can be inserted where needed later on. A NACL consists of separate inbound and outbound rules, and each rule can either allow or deny traffic. The following are the parts of a network ACL rule:
+
+- Rule number.
+- Protocol. 
+- [Inbound rules only] The source of the traffic (CIDR range) and the destination (listening) port or port range.
+- [Outbound rules only] The destination for the traffic (CIDR range) and the destination port or port range.
+- Choice of ALLOW or DENY for the specified traffic.
+
+Each network ACL includes a default rule whose rule number is an asterisk. This can be treated as a default rule that applies in case a packet doesn't match any of the other rules defined in the NACL.
+
+Network ACLs are stateless whilst Security Group statefull. The main difference is that Security groups remembers the incoming request and allow the response to flow out without defining any additional outbound rule, NACLs instead need a separate inbound and outbound rule.
+
+A common exam question is about DDOS attachk and IP blacklisting, in this case NACLs must be used as Security groups don't allow to blacklist range of IP addresses. 
+
+An ephemeral port is a short-lived endpoint that is created by the operating system when a program requests any available user port. The operating system selects the port number from a predefined range, typically between 1024 and 65535, and releases the port after the related TCP connection terminates. When an inbound request is received the response is usually sent over an ephemeral port that is allocated on the fly by the OS, this is an important concept to keep in mind when troubleshouting issue in VPC up as the problem may be caused by a NACL that doesn't ALLOW traffic through ephemeral ports.
+
 ------------------------------------------------------------------------------------
 
-## Network Access Control List
 
 ## Peering Connection
 
