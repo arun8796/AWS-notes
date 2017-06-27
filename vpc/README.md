@@ -108,7 +108,7 @@ Sometime resources in private subnet require an Internet Access (e.g. an EC2 ins
 - **NAT Gateway**. This is an highly available, managed Network Address Translation (NAT) service that resources in a private subnet can use to access the Internet. When a new NAT Gateway is created two main information must be provided:
     * A public subnet where the Gateway service will be deployed.
     * An allocated Elastic IP Address to be used by the Gateway.
-Upon creation of the NAT Gateway a new route on the routing table that is assigned to the private subnet to flow the traffic through the NAT instance in the public subnet must be created.
+    * **Upon creation of a new NAT Gateway a new route on the routing table that is assigned to the private subnet to flow the traffic through the NAT instance in the public subnet must be created.**
 
 An important consideration to keep in mind about NAT instances is that these are fully managed by the customer and may represent a Single point of failure as well a network bottleneck for Internet access for private subnet. Let's tackle this consideration separately:
 
