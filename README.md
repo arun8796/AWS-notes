@@ -18,6 +18,6 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 8. [DynamoDB](dynamodb/README.md)
 9. [CloudFormation](cloudformation/README.md)
 10. Route53 & DNS
-11. The Shared responsibility Model
+11. [The Shared responsibility Model](shared-responsibility-model/README.md)
 
 * * *
