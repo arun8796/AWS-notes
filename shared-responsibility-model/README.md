@@ -1,7 +1,7 @@
 # Table of Contents
 
 1. [Preface](README.md#markdown-header-preface)
-2. [The trusted Advisor](README.md#markdown-header-trusted-advisor)
+2. [The trusted Advisor](README.md#markdown-header-the-trusted-advisor)
 
 * * *
 
