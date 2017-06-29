@@ -89,6 +89,8 @@ S3 can be used to host a static website enabling an option that can be set at bu
 
 If a static website hosted in an S3 buckets tries to access resources into another bucket via Javascript, by default, an error is returned as S3 doesn't allow Cross Origin Requests. There is however the possibility to enable the CORS option in the target bucket to allow a specific domain to access the bucket resources.
 
+Instead of accessing the website by using an Amazon S3 website endpoint, customers can use their own domains, such as example.com to serve your content via Amazon Route 53, however this option is only suported at the root domain (example.com and www.example.com).
+
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 * * *
@@ -101,6 +103,7 @@ From a Security perspective two aspects must be taken into consideration:
  2. How information are persisted and maintained at rest and when are in transit over the network.
 
 By default all the newly created buckets are **PRIVATE** by default, administrator can then use **IAM policies**, **Bucket policies** ad **ACLs** to control access to content from other users, roles and groups.
+**Bucket ownership cannot be transferred**.
 
 ## IAM policies
 

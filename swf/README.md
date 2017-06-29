@@ -19,6 +19,7 @@ Amazon Simple Workflow Service (SWF) is a web service that makes it easy to coor
 - **Workflow Execution.** A workflow execution refers to an individual execution of a workflow.
 
 Workers and Deciders can be deployed either in the cloud (e.g. Amazon EC2 or Lambda) or on machines behind corporate firewalls.
+A workflow starter is any application that can initiate workflow executions.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 

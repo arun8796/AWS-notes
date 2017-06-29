@@ -21,11 +21,11 @@ Information are always stored on SSD disks and are replicated across three geogr
 
 The main elements that make up DynamoDB are:
 
-- **Tables**: like tables in a traditional relation database, DynamoDB only allows 256 tables per Region.
+- **Tables**: like tables in a traditional relation database, DynamoDB only allows 256 tables per Region, **this sia a soft limit and can be changed via AWS support**.
 - **Items**: like rows in a traditional relation database.
 - **Attributes**: that can be of a primitive (String, Numbers, Booleans, etc.) or complex type, like lists or other nested objects.
 
-Data can be exported as a CSV file.
+Data can be exported as a CSV file, howerver this functionality is limited to maximum of 100 records and also if the table contains nested documents, the columns in the csv files will contain json objects.
 
 ```
 {
@@ -139,6 +139,7 @@ DeleteTable | No | Deletes a table.
 DescribeTable | No | Returns table size, status, and index information.
 ListTables | No | Returns a list of all tables associated with the current account and endpoint.
 PutItem | Yes | Creates a new item, or replaces an old item with a new item.
+GetItem | Yes | Returns a set of attributes for the item with the given primary key.
 BatchWriteItem | Yes | Inserts, replaces, and deletes multiple items across multiple tables in a single request, but not as a single transaction. Supports batches of up to 25 items to Put or Delete, with a maximum total request size of 16 MB.
 BatchGetItem | Yes | Returns the attributes for multiple items from multiple tables using their primary keys. A single response has a size limit of 16 MB and returns a maximum of 100 items. Supports both strong and eventual consistency.
 

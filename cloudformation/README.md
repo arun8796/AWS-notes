@@ -96,11 +96,11 @@ Top Intrinsic functions to remember:
 
 Function | Description | Syntax
 --- | --- | ---
-Fn::FindInMap | Returns the value corresponding to keys in a two-level map that is declared in the Mappings section. | ``` { "Fn::FindInMap" : [ "MapName", "TopLevelKey", "SecondLevelKey"] } ```
-Fn::GetAtt | Returns the value of an attribute from a resource in the template. | ``` { "Fn::GetAtt" : [ "logicalNameOfResource", "attributeName" ] } ```
+Fn::FindInMap | **Returns the value corresponding to keys in a two-level map that is declared in the Mappings section.** | ``` { "Fn::FindInMap" : [ "MapName", "TopLevelKey", "SecondLevelKey"] } ```
+Fn::GetAtt | **Returns the value of an attribute from a resource in the template.** | ``` { "Fn::GetAtt" : [ "logicalNameOfResource", "attributeName" ] } ```
 Fn::GetAZs | Returns an array that lists Availability Zones for a specified region. | ``` { "Fn::GetAZs" : "region" } ```
 Fn::Join | Appends a set of values into a single value, separated by the specified delimiter. If a delimiter is the empty string, the set of values are concatenated with no delimiter. | ``` { "Fn::Join" : [ "delimiter", [ comma-delimited list of values ] ] } ```
-Fn::Ref | Returns the value of the specified parameter or resource. When you specify a parameter's logical name, it returns the value of the parameter. When you specify a resource's logical name, it returns a value that you can typically use to refer to that resource, such as a physical ID. | ```{ "Ref" : "logicalName" }```
+Fn::Ref | **Returns the value of the specified parameter or resource.** When you specify a parameter's logical name, it returns the value of the parameter. When you specify a resource's logical name, it returns a value that you can typically use to refer to that resource, such as a physical ID. | ```{ "Ref" : "logicalName" }```
 
 **Example**: Registration of a LoadBalancer DNS with a Route53 domain. As at the time the developer creates the template the LodBalancer **DNSName** is not yet assigned an intrinsic function, Fn:GetAtt in this case, can be used as placeholder to reference the value of the **DNSName** output property that is obtained once the AWS resource is created.
 
@@ -128,3 +128,14 @@ ListStacks | Returns the summary information for stacks whose status matches the
 ListStackResources | Returns descriptions of all resources of the specified stack. For deleted stacks, ListStackResources returns resource information for up to 90 days after the stack has been deleted.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Command line
+Command                            | Description
+---                                     | ---
+aws cloudformation create-stack         | Creates a new Stack from a given template.
+aws cloudformation list-stacks          | Get a list of any of the stacks created (even those which have been deleted up to 90 days).
+aws cloudformation describe-stacks      | Get information on your running stacks.
+aws cloudformation list-stack-resources | Lists a summary of each resource in the specified stack.
+aws cloudformation delete-stack         | Deletes a runnig stack.
