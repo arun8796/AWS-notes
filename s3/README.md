@@ -10,11 +10,12 @@
     * [S3 bucket policies](README.md#markdown-header-s3-bucket-policies)
     * [ACLs](README.md#markdown-header-acls)
     * [Encryption](README.md#markdown-header-encryption)
-7. [Versioning](README.md#markdown-header-versioning)    
-8. [Cross Region Replication](README.md#markdown-header-cross-region-replication)    
-9. [Lifecycle management](README.md#markdown-header-lifecycle-management)
-10. [Transfer Acceleration](README.md#markdown-header-transfer-acceleration)
-11. [Logging](README.md#markdown-header-logging)
+7. [Pre Signed URLs](README.md#markdown-header-pre-signed-urls)
+8. [Versioning](README.md#markdown-header-versioning)
+9. [Cross Region Replication](README.md#markdown-header-cross-region-replication)
+10. [Lifecycle management](README.md#markdown-header-lifecycle-management)
+11. [Transfer Acceleration](README.md#markdown-header-transfer-acceleration)
+12. [Logging](README.md#markdown-header-logging)
 
 * * *
 
@@ -156,6 +157,21 @@ ACLs are sub-resources that are attached to every S3 bucket and object and defin
 
 **A bucket can also either contain encrypted an unencrypted content. To specify that a file has to be encrypted at rest the **x-amz-server-side-encryption** header can be used when uploading the object.**
 **AES-256 is used for content encryption.**
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Pre Signed URLs
+
+As said all objects by default are private and only the object owner has permission to access these objects.  However, the object owner can optionally share objects with others by creating a pre-signed URL, using their own security credentials, to grant time-limited permission to download the objects.
+When a pre-signed URL is created for an object, following information must be provide:
+- The security credentials
+- A bucket name and an object key
+- The HTTP method (GET to download the object)
+- The expiration date and time.
+
+The pre-signed URLs are valid only for the specified duration. Anyone who receives the pre-signed URL can then access the object.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
