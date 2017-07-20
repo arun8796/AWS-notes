@@ -26,6 +26,10 @@ Once the application stack is created the customer can:
 - Run other application components, such as a memory caching service, side-by-side in Amazon EC2
 - Access log files without logging in to the application servers
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
 # Supported Platforms
 
 Following platforms are currently being supported by AWS BeansTalk:
@@ -39,6 +43,10 @@ Following platforms are currently being supported by AWS BeansTalk:
 - Java SE
 - Docker
 - Go
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
 
 # Managed Platform Updates
 
@@ -58,5 +66,11 @@ Major version updates can be applied at any time using the AWS Elastic Beanstalk
 - Apply the update in-place on an existing environment.
 - Create a clone of an existing environment with the new platform version.
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
 # Limits
 Customer can create up to 75 applications and 1,000 application versions. By default, is possible to run up to 200 environments across all the applications.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
