@@ -64,14 +64,14 @@ To simplify the deployment of AWS resources a **Default** VPC is always provided
 
 ## Subnet
 
-Subnets are segments of a VPCâ€™s IP address range where the user can place groups of isolated resources. **A max of 200 subnets per VPC can be allocated, Subnets are also always associated to one and only one AWS Availability Zone**. When a new subnet is cretaed the following information must be provided:
+Subnets are segments of a VPC’s IP address range where the user can place groups of isolated resources. **A max of 200 subnets per VPC can be allocated, Subnets are also always associated to one and only one AWS Availability Zone**. When a new subnet is cretaed the following information must be provided:
 
 - A subnet name.
 - The VPC the subnet belongs to.
 - The CIDR block as a subset of the bigger CIDR block specified at the VPC level.
 - The availability zone where the subnet belongs to.
 
-When a new subnet is creted the console also shows how many IP addresses are available within that subnet. AWS always reserves 5 ip address per Subnet as follow (assumin an IP class of 10.0.0.0):
+When a new subnet is created the console also shows how many IP addresses are available within that subnet. AWS always reserves 5 ip address per Subnet as follow (assumin an IP class of 10.0.0.0):
 
 - **10.0.0.0**. Network address.
 - **10.0.0.1**. VPC router.
@@ -90,12 +90,12 @@ An Internet gateway, aka IGW, is a horizontally scaled, redundant, and highly av
 
 An Internet gateway supports IPv4 and IPv6 traffic.
 
-When a new IGW is created a logic name is assigned to it is then necessary to attache it to an existing VPC.
+When a new IGW is created, a logic name is assigned to it, then it is necessary to attach it to an existing VPC.
 Every VPC can only have attached one and only one IGW.
 
 ## Route tables
 
-A route table contains a set of rules that are used to determine where network traffic is directed. Each subnet in a VPC must be associated with one and only one route table at a time, but is possible to associate multiple subnet with the same route table.
+A route table contains a set of rules that are used to determine where network traffic is directed. Each subnet in a VPC must be associated with one and only one route table at a time, but it is possible to associate multiple subnet with the same route table.
 By definition a Subnet that is associated to a Route table that has a route to an Internet Gateway is a **Public Subnet**, whilst all that subnet that are associted to a Route table that doesn't have such routing rule can be considered **Private**.
 
 ## NAT Instances and NAT Gateways
@@ -104,17 +104,17 @@ Sometime resources in private subnet require an Internet Access (e.g. an EC2 ins
 
 - **NAT instance**. Nowadays this may be considered a legacy approach, it represents the first solution that AWS provided to its customers for the sole purpose of connecting instances in private subnet to the Internet (prior to 2016 when the NAT gateways was introduced). A NAT instance is basically an EC2 instance, AWS provides several AMIs to implement the NAT server, that can deployed in a public subnet to serve outbound internet traffic to instances located into private subnet. In order to deploy a NAT instance the following actions are required:
     * Deploy an EC2 instance in the **public subnet** of the chosen VPC using one of the designated AWS NAT AMIs. When creating the instance a Security Group must be chosen.
-    * Disable, on the EC2 instance networking configuration the **Source/Destination Checks** option. Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself.
+    * Disable, on the EC2 instance networking configuration, the **Source/Destination Checks** option. Each EC2 instance performs source/destination checks by default. This means that the instance must be the source or destination of any traffic it sends or receives. However, a NAT instance must be able to send and receive traffic when the source or destination is not itself.
     * Add a new route on the routing table that is assigned to the private subnet to flow the traffic through the NAT instance in the public subnet.
-- **NAT Gateway**. This is an highly available, managed Network Address Translation (NAT) service that resources in a private subnet can use to access the Internet. When a new NAT Gateway is created two main information must be provided:
+- **NAT Gateway**. This is a highly available, managed Network Address Translation (NAT) service that resources in a private subnet can use to access the Internet. When a new NAT Gateway is created two main information must be provided:
     * A public subnet where the Gateway service will be deployed.
     * An allocated Elastic IP Address to be used by the Gateway.
     * **Upon creation of a new NAT Gateway a new route on the routing table that is assigned to the private subnet to flow the traffic through the NAT instance in the public subnet must be created.**
 
-An important consideration to keep in mind about NAT instances is that these are fully managed by the customer and may represent a Single point of failure as well a network bottleneck for Internet access for private subnet. Let's tackle this consideration separately:
+An important consideration to keep in mind about NAT instances is that these are fully managed by the customer and may represent a Single point of failure as well as a network bottleneck for Internet access for private subnet. Let's tackle this consideration separately:
 
 - Fully managed by the user. As NAT instances are effectively EC2 instances the customer is in charge of patching and maintaining the instance itself.
-- Single point of failure. Again due to their nature, of instance, a fault may always happen an involve the instance itself or the AZ where it has been deployed. If this happens private subnet would not be able to access the Internet anymore. AWS always suggests to implement redundancy on NAT instances using AutoScaling groups.
+- Single point of failure. Again due to their nature, of instance, a fault may always happen and involve the instance itself or the AZ where it has been deployed. If this happens private subnet would not be able to access the Internet anymore. AWS always suggests to implement redundancy on NAT instances using AutoScaling groups.
 - Network bottleneck. As stated in the documentation NAT instances max bandwidth is strictly related to the max bandwidth available at the instance level. Smaller is the instance capacity reduced will be the bandwidth available for the Internet Access.
 
 Such considerations don't apply for NAT Gateways as in this case the service is fully managed by AWS.
@@ -123,7 +123,7 @@ Such considerations don't apply for NAT Gateways as in this case the service is 
 
 A network access control list, aka NACL, is an optional layer of security for VPCs that acts as a firewall for controlling traffic in and out of one or more subnets. VPC automatically comes with a modifiable default NACL that by default allows all inbound and outbound traffic.
 
-Each subnet in a VPC must be associated with a network ACL, however if a subnet is not explicitly associate then the default NACL, provisioned when the VPC was creared, is automaitlcally selected. Network ACL can be associated to multiple subnets at the same time however a subnet can be associated with one and only one NACL at a time. Custom network ACLs by default denies all inbound and outbound traffic until new rules are added. When a new NACL is cretaed, and before definining the rules, the following information must be provided:
+Each subnet in a VPC must be associated with a network ACL, however if a subnet is not explicitly associate then the default NACL, provisioned when the VPC was created, is automatically selected. Network ACL can be associated to multiple subnets at the same time however a subnet can be associated with one and only one NACL at a time. Custom network ACLs by default denies all inbound and outbound traffic until new rules are added. When a new NACL is created, and before definining the rules, the following information must be provided:
 
 - A logical name.
 - A target VPC.
@@ -140,13 +140,13 @@ Each network ACL includes a default rule whose rule number is an asterisk. This 
 
 Network ACLs are stateless whilst Security Group statefull. The main difference is that Security groups remembers the incoming request and allow the response to flow out without defining any additional outbound rule, NACLs instead need a separate inbound and outbound rule.
 
-A common exam question is about DDOS attachk and IP blacklisting, in this case NACLs must be used as Security groups don't allow to blacklist range of IP addresses. 
+A common exam question is about DDOS attack and IP blacklisting, in this case NACLs must be used as Security groups don't allow to blacklist range of IP addresses. 
 
 An ephemeral port is a short-lived endpoint that is created by the operating system when a program requests any available user port. The operating system selects the port number from a predefined range, typically between 1024 and 65535, and releases the port after the related TCP connection terminates. When an inbound request is received the response is usually sent over an ephemeral port that is allocated on the fly by the OS, this is an important concept to keep in mind when troubleshouting issue in VPC up as the problem may be caused by a NACL that doesn't ALLOW traffic through ephemeral ports.
 
 ## Peering Connection
 
-A VPC peering connection is a networking connection between two VPCs that enables to route traffic between them. Instances in either VPC can communicate with each other as if they are within the same network. VPC peering connection can be configured between VPCs in the sme AWS account, or with a VPC in another AWS account. In both cases, the VPCs must be in the same region.
+A VPC peering connection is a networking connection between two VPCs that enables to route traffic between them. Instances in either VPC can communicate with each other as if they are within the same network. VPC peering connection can be configured between VPCs in the same AWS account, or with a VPC in another AWS account. In both cases, the VPCs must be in the same region.
 
 AWS uses the existing infrastructure of a VPC to create a VPC peering connection; it is neither a gateway nor a VPN connection, and does not rely on a separate piece of physical hardware. There is no single point of failure for communication or a bandwidth bottleneck. In order to create a VPC the following information/action are needed:
 
