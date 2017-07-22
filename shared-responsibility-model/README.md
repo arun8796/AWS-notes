@@ -9,8 +9,8 @@
 
 When evaluating the security of a cloud solution, it is important for customers to understand and distinguish between:
 
-- Security measures that the cloud service provider (AWS) implements and operates â€“ "security of the cloud".
-- Security measures that the customer implements and operates, related to the security of customer content and applications that make use of AWS services â€“ "security in the cloud".
+- Security measures that the cloud service provider (AWS) implements and operates – "security of the cloud".
+- Security measures that the customer implements and operates, related to the security of customer content and applications that make use of AWS services – "security in the cloud".
 
 While AWS manages security of the cloud, security in the cloud is the responsibility of the customer.
 To better enforce those concepts AWS offers a shared responsibility models for each of the different types of service that are provided to the customers.
@@ -38,6 +38,3 @@ The AWSTrusted Advisor tool offers a one-view snapshot of the service being used
 underutilized resources.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
-
-* * *
-
