@@ -2,6 +2,7 @@
 
 1. [Preface](README.md#markdown-preface)
 2  [Supported Route53 DNS records](README.md#markdown-supported-route53-dns-records)
+3. [The Alias record](README.md#markdown-supported-the-alias-record)
 
 * * *
 
@@ -99,6 +100,23 @@ Sender Policy Framework (SPF) records allow domain owners to publish a list of I
 ## SRV, Service locator
 
 The SRV record is used to identify computers that host specific services. SRV resource records are used to locate for instance domain controllers for Active Directory.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# The Alias Record
+
+In addition to the DNS records described above Amazon Route 53 offers a special type of DNS record called **Alias**. Alias records are used to map resource record sets in the DNS zone to the following AWS services:
+
+- Amazon Elastic Load Balancing load balancers.
+- Amazon CloudFront distributions.
+- AWS Elastic Beanstalk environments.
+- Amazon S3 buckets that are configured as websites. 
+
+Alias records work like a CNAME record as customer can map one DNS name (www.example.com) to another 'target' DNS name (elb1234.elb.amazonaws.com). They differ from a CNAME record in that they are not visible to resolvers. Resolvers only see the A record and the resulting IP address of the target record. Also is not possible to create a CNAME record for naked domain name (a naked domain name for www.example.com is example.com) for that and A or Alias record must be used.
+
+Alias record are needed because of the **elasticity** of the cloud infrastructure. In simple words the IP addresses associated to the DNS provided by the services  described above, think to an elastic load balancer DNS, is extremely dynamic, addresses keep changing in the backend, Alias records are capable of detecting those changes dynamically and keep in syncro the related DNS record. Another important difference with CNAMES is that requests to Alias are free whilst requests to CNAMES are subject to a charge.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
