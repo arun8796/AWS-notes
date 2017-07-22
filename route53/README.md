@@ -2,7 +2,7 @@
 
 1. [Preface](README.md#markdown-preface)
 2. [Supported Route53 DNS records](README.md#markdown-supported-route53-dns-records)
-3. [The Alias record](README.md#markdown-supported-the-alias-record)
+3. [The Alias record](README.md#markdown-the-alias-record)
 
 * * *
 
