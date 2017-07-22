@@ -1,0 +1,105 @@
+# Table of Contents
+
+1. [Preface](README.md#markdown-preface)
+2  [Supported Route53 DNS records](README.md#markdown-supported-route53-dns-records)
+
+* * *
+
+# Preface
+
+A Domain Name System is a service that is used to translate human readable domain names into IP addresses (eg. www.website.com -> 10.1.34.23). A DNS can be seens as a huge database of names and their respective addresses. 
+
+A domain name is made up of different strings separated by dots, the first string of a domain name, reading right to left is also known as *top level domain name*, the second string as *second level domain name* and so on. *Top level domain names* are controlled worldwide by IANA via a special root name database whilst domain names within a top level domain are assigned by Domain Registrars and must, of course, be unique (these are held in the WhoIS registry). 
+
+**Route53 is the DNS solution provided by AWS.** Let's explore some key terminology:
+
+A **DNS Zone** is a container of all the DNS records for a specific domain. For example: example.com, www.example.com, blog.example.com, and mail.example.com are four **DNS Records** inside a single **DNS Zone** for the example.com domain. Most DNS record requires at least three pieces of information: Record Name, Record Value/Data, Time to Live (TTL). 
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Supported Route53 DNS records
+
+At the time of writing Route53 supports the follwoing DNS records.
+
+## SOA, Start of Authority Record
+
+A SOA-Record contains important management information about the zone, especially regarding the zone transfer. 
+
+## A, IPv4 Address Record
+
+This is the most basic type of DNS record and is used to point a domain, or subdomain, to an IPv4 address.
+
+Name | TTL | Type | Data
+--- | --- | --- | ---
+www.example.com | 86400 | A | 192.168.1.100
+mail.example.com | 86400 | A | 192.168.2.300
+
+## AAAA, IPv6 Address Record
+
+This is like an A record but for IPv6 addresses.
+
+Name | TTL | Type | Data
+--- | --- | --- | ---
+www.example.com | 86400 | A | 2600:1800:5::9
+mail.example.com | 86400 | A | 2600:1800:5::10
+
+## CNAME, Canonical Name Record
+
+These are used to point a domain or subdomain to another hostname.
+
+Name | TTL | Type | Data (AliasTo)
+--- | --- | --- | ---
+docs.example.com | 86400 | CNAME | documents.example.com
+docs.example.com | 86400 | CNAME | downloads.example.com
+
+## MX, Mail Exchange Record
+
+These are used to route email according the domain owners preference. The MX record itself specifies which server(s) to attempt to use to deliver mail to when this type of request is made to the domain. 
+
+Name | TTL | Type | Priority | Data  
+--- | --- | --- | --- | ---
+example.com | 86400 | MX | 10 | mailhost1.example.com
+example.com | 86400 | MX | 20 | mailhost2.example.com
+example.com	| 86400 | MX | 30 | mailhost3.example.com
+
+## NS, Name Server Record
+
+These are used to delegate a subdomain to a set of name servers.
+
+Name | TTL | Type | Data
+--- | --- | --- | ---
+example.com | 86400 | NS |ns1.example.com.
+example.com | 86400 | NS | ns2.example.com.
+example.com | 86400 | NS | ns3.example.com.
+example.com | 86400 | NS | ns4.example.com.
+
+## TXT, Text record
+
+A TXT record is used to store any text-based information that can be grabbed when necessary.
+
+Name | TTL | Type | Data (Text)
+--- | --- | --- | ---
+example.com | 86400 | TXT | ...
+example.com | 86400 | TXT | ...
+
+## NAPTR, Name authority pointer record
+
+Used mostly in the internet telephony.
+
+## PTR, Pointer record
+
+PTR records are used for the Reverse DNS lookup. Using the IP address you can get the associated domain/hostname.
+
+## SPF, Sender policy framework
+
+Sender Policy Framework (SPF) records allow domain owners to publish a list of IP addresses or subnets that are authorized to send email on their behalf. The goal is to reduce the amount of spam and fraud by making it much harder for malicious senders to disguise their identity.
+
+## SRV, Service locator
+
+The SRV record is used to identify computers that host specific services. SRV resource records are used to locate for instance domain controllers for Active Directory.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *

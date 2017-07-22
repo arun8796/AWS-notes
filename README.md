@@ -18,7 +18,7 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 8. [DynamoDB](dynamodb/README.md)
 9. [CloudFormation](cloudformation/README.md)
 10. [Beanstalk](beanstalk/README.md)
-11. Route53 & DNS
+11. [Route53](route53/README.md)
 12. [The Shared responsibility Model](shared-responsibility-model/README.md)
 
 * * *
