@@ -9,6 +9,7 @@
     * [NAT Instances and NAT Gateways](README.md#markdown-header-nat-instances-and-nat-gateways)
     * [Network Access Control List](README.md#markdown-header-network-access-control-list)
     * [Peering Connection](README.md#markdown-header-peering-connection)
+3. [Bastion instance](README.md#markdown-header-bastion-instance)
 
 * * *
 
@@ -169,5 +170,17 @@ Few scenarios to keep in mind are:
     * An Internet connection in a private subnet through a NAT device.
     * A VPC endpoint to an AWS service; for example, an endpoint to Amazon S3.
     * A ClassicLink connection.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+## Bastion instance
+
+Instances in private subnets are not accessible directly from the internet, outbound connections are made available via NAT instances and/or NAT Gateway but inbound traffic is never allowed (remember that instances in the private subnets are not provided with a public IP address). This security constraint imposes a big limitation as customer cannot directly connect to the instance for maintainance purposes. 
+
+To overcome this issue a Bastion instance, also known as Jump box, practically an EC2 instance, can be deployed in a public subnet of the VPC and used as a bridge to connect to the instances located in the private subnet (via ssh and/or rdp).
+
+**Bastion host are totally unrelated with NAT instances and NAT Gateway as serve different purposes.**
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
