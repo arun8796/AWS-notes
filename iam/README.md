@@ -4,6 +4,7 @@
 2. [IAM Entities](README.md#markdown-header-iam-entities)
 3. [Policy Evaluation Logic](README.md#markdown-header-policy-evaluation-logic)
 4. [Sign-in URL](README.md#markdown-header-sign-in-url)
+5. [Limits](README.md#markdown-header-limits)
 
 * * *
 
@@ -144,3 +145,13 @@ If customer already manage user identities outside of AWS, he can use IAM identi
 	3. User uses the temporary credentials to sign service requests.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Limits
+
+Few limits to remember:
+
+- No more than 5000 users per account.	
+- No more than 100 Groups per account.
+- No more than 500 Roles per account.
