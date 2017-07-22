@@ -98,13 +98,13 @@ IAM policies can be of two types:
 
 For security reasons AWS follows an Explicit-Allow rule meaning that all the Actions are always denied by default and need to be explicitly allowed via Policies. Sometimes rules in a policy can conflict, in this case the following process gets used to determine if allow or not the Action to the resource:
 
-1. Decision starts at “Deny”
+1. Decision starts at **Deny**
 2. Evaluate all applicable policies
-3. Is there an explicit “Deny” ?
-	Y. Final decision is “Deny” (explicit Deny)
-	N. Is there an “Allow” ?
-		Y. Final Decision is “Allow”
-		N. Final decision is “Deny”
+3. Is there an explicit **Deny** ?
+	1. Yes, then final decision is **Deny** (explicit Deny)
+	2. No, then is there an **Allow** ?
+		1. Yes, then final Decision is **Allow**
+		2. No, then Final decision is **Deny**
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
