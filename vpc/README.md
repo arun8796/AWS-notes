@@ -171,6 +171,3 @@ Few scenarios to keep in mind are:
     * A ClassicLink connection.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
-
-* * *
-
