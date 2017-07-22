@@ -1,40 +1,121 @@
 # Table of Contents
 
 1. [Preface](README.md#markdown-header-preface)
-2. [The trusted Advisor](README.md#markdown-header-the-trusted-advisor)
+2. [IAM Entities](README.md#markdown-header-iam-entities)
+3. [Policy Evaluation Logic](README.md#markdown-header-policy-evaluation-logic)
+4. [Sign-in URL](README.md#markdown-header-sign-in-url)
 
 * * *
 
 # Preface
 
-When evaluating the security of a cloud solution, it is important for customers to understand and distinguish between:
-
-- Security measures that the cloud service provider (AWS) implements and operates – "security of the cloud".
-- Security measures that the customer implements and operates, related to the security of customer content and applications that make use of AWS services – "security in the cloud".
-
-While AWS manages security of the cloud, security in the cloud is the responsibility of the customer.
-To better enforce those concepts AWS offers a shared responsibility models for each of the different types of service that are provided to the customers.
-The security best practice document drafted by AWS partitions those services into 3 main categories, responsibilities are depicted in the images below.
-
-- Infrastructure services. (eg. EC2, EBS VPCs etc..)
-
-![alt text](infrastructure.png "Infrastructure services")
-
-- Container services (eg. RDS and EMR etc..).
-
-![alt text](container.png "Container services")
-
-- Abstracted services (DynamoD, SQS, SNS, S3 etc..).
-
-![alt text](abstract.png "Abstracted services")
+IAM is a Global AWS service that is being used to manage all the aspects that revolve around the security of the AWS Cloud platform. The AWS platform is PCI-DSS compliant (a standard for handling secure Credit Card transactions) and also supports Multi-Factors Authentication. The main entities that can be managed through IAM are: Users, Groups, Roles and Policies.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 * * *
 
-# The Trusted Advisor
+# IAM Entitites
 
-The AWSTrusted Advisor tool offers a one-view snapshot of the service being used and helps identify common security misconfigurations, suggestions for improving system performance, and
-underutilized resources.
+Below an explaination of each individual IAM entity.
+
+## Users
+
+Users represents the main identities that access, and use the AWS platform, this includes normal users and applications. When a new user account is created the Administrator can choose if:
+
+- The access is restricted to the Management Console.
+- The access is restricted to the APIs (programmatic access). 
+- Both access types are granted.
+
+For programmatic access a new pair Access key and Secret key must be generated and these credentials can be downloaded locally as a CSV file. AWS doesn’t keep a copy of these information so in case these gets lost the only option left to the Administrator is to regenerated them from scratch (and this may impat the application that's using it).
+
+Access key and Secret key can only be used for programmatic access (APIs) whilst username and password for accessing the services via the AWS console.
+
+The root account is the main AWS account, created by AWS, with full Administration privileges. AWS recommends not to use this account for the daily AWS operation but instead provision ad-hoc identities.
+
+## Groups
+
+Groups in AWS represents collection of identities that share the same set of permissions.
+
+## Roles
+
+An IAM role is an IAM entity that defines a set of permissions for making AWS service requests. Roles are not associated with a specific user or group but instead are **Assumed** by trusted entities such as IAM users, applications, or other AWS services (eg. EC2, S3, etc.). Roles can be assumed by calling the AWS Security Token Service (STS) **AssumeRole** APIs (or alternatively in case of Federated access with **AssumeRoleWithWebIdentity** and **AssumeRoleWithSAML**). These APIs return a set of temporary security credentials that applications can use to sign requests to AWS service APIs.
+
+**IAM roles allow the customer to delegate access with defined permissions without having to share long-term access keys. **
+
+## Policies
+
+Policies are JSON documents that explicitly lists permissions to AWS resource, in its basic form a policy allows the customer to specify the following:
+
+- **Actions**, what actions will be allowed/ or denied. Each AWS service has its own set of actions (eg. allow a user to use the Amazon S3 ListBucket action).
+- **Resources**, which resources the customer will allow/ deny the action on (eg. a specific Amazon S3 buckets).
+- **Effect**, what the effect will be when the user requests access, this can be **Allow** or **Deny**. The default is that all resources are denied
+
+A policy document can have of one or more **statements**, each of which describes one set of permissions, each statement can be provided with a **Condition** block (optional). The policy header with the version is OPtional as well. 
+
+```
+{
+	"Version": "2012-10-17",
+	"Statement": [ 
+		{
+			"Sid": "firstStatement",
+    		"Effect": "Allow",
+    		"Action": "s3:ListBucket",
+    		"Resource": "arn:aws:s3:::example_bucket"
+  		},
+ 		{
+   			"Sid": "firstStatement",
+    		"Effect": "Allow",
+    		"Action": [
+      			"s3:List*",
+        		"s3:Get*"
+    		],
+    		"Resource": [
+      			"arn:aws:s3:::confidential-data",
+      			"arn:aws:s3:::confidential-data/*"
+    		],
+    		"Condition": {"Bool": {"aws:MultiFactorAuthPresent": "true"}}
+ 		} 
+	]
+}
+```
+
+IAM policies can be of two types:
+
+- **Managed policies**. Standalone policies that can be attached to multiple users, groups, and roles in an AWS account, these only apply to identities (users, groups, and roles) not resources and never include in their statements a Principal section. Customer can use two types of managed policies:
+
+	- **AWS managed policies**. These are created and managed by AWS.
+
+	- **Customer managed policies**. These are created by the customerand allow to have more precise over AWS managed policies.
+
+- **Inline policies**. Policies that customer create and manage, and that are embedded directly into a single user, group, or role. In simple words an inline policy includes a Principal section.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Policy Evaluation Logic
+
+For security reasons AWS follows an Explicit-Allow rule meaning that all the Actions are always denied by default and need to be explicitly allowed via Policies. Sometimes rules in a policy can conflict, in this case the following process gets used to determine if allow or not the Action to the resource:
+
+(1)	Decision starts at “Deny”
+(2)	Evaluate all applicable policies
+(3)	Is there an explicit “Deny” ?
+	(Y)	Final decision is “Deny” (explicit Deny)
+	(N)	Is there an “Allow” ?
+		(Y)	Final Decision is “Allow”
+		(N)	Final decision is “Deny”
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Sign-in URL
+
+Is the URL to be used for accessing the AWS console, the URL has the following form:
+
+https://<account_id>.signin.aws.amazon.com/console
+
+To simplify access is also possible to set-up an Alias URL, in addition to the canonical sign-in URL, but is important to remember that the Alias must be unique within the AWS domain. 
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
