@@ -1,8 +1,8 @@
 # Table of Contents
 
-1. [Preface](README.md#markdown-preface)
-2. [Supported Route53 DNS records](README.md#markdown-supported-route53-dns-records)
-3. [The Alias record](README.md#markdown-the-alias-record)
+1. [Preface](README.md#markdown-header-preface)
+2. [Supported Route53 DNS records](README.md#markdown-header-supported-route53-dns-records)
+3. [The Alias record](README.md#markdown-header-the-alias-record)
 
 * * *
 
