@@ -3,6 +3,7 @@
 1. [Preface](README.md#markdown-header-preface)
 2. [Supported Route53 DNS records](README.md#markdown-header-supported-route53-dns-records)
 3. [The Alias record](README.md#markdown-header-the-alias-record)
+4. [Routing Policies](README.md#markdown-header-routing-policies)
 
 * * *
 
@@ -12,7 +13,7 @@ A Domain Name System is a service that is used to translate human readable domai
 
 A domain name is made up of different strings separated by dots, the first string of a domain name, reading right to left is also known as *top level domain name*, the second string as *second level domain name* and so on. *Top level domain names* are controlled worldwide by IANA via a special root name database whilst domain names within a top level domain are assigned by Domain Registrars and must, of course, be unique (these are held in the WhoIS registry). 
 
-**Route53 is the DNS solution provided by AWS.** Let's explore some key terminology:
+**Route53 is the DNS solution provided by AWS and is Global a global Service.** Let's explore some key terminology:
 
 A **DNS Zone** is a container of all the DNS records for a specific domain. For example: example.com, www.example.com, blog.example.com, and mail.example.com are four **DNS Records** inside a single **DNS Zone** for the example.com domain. Most DNS record requires at least three pieces of information: Record Name, Record Value/Data, Time to Live (TTL). 
 
@@ -121,3 +122,67 @@ Alias record are needed because of the **elasticity** of the cloud infrastructur
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 * * *
+
+# Routing Policies
+
+When customer create a resource record set a routing policy can be selected, this determines how Amazon Route 53 responds to DNS queries. Route53 supports several routing policies that will be explained below.
+
+## Simple routing policy
+
+This is the simplest routing policy available and is used when there is a a single resource that performs a given function for the selected domain, for example, a web server that serves content for the example.com website.
+
+To create this type of policy the customer has to:
+
+1. Create a new record-set.
+2. Set the routing policy to Simple.
+3. Select the resource to target. 
+
+## Weighted routing policy
+
+This is used when we want to route traffic to multiple resources in proportions that are specified by us, for example, 30% to an ELB in a region and the remaining 70% into another ELB located into another region. The traffic is distributed according the weights over a period of time, usually the day. This means that the behaviour over smaller time windows, like 30 minutes or 1 hour, is not deterministic.
+
+To create this type of policy the customer has to:
+
+1. Create a record-set for each resource to consume.
+2. For each record-set set the routing policy type to Weighted.
+3. Specify a value for the weight (this is an integer between 0 and 255). 
+
+## Latency routing policy
+
+This is used when we have resources in multiple locations and we want to route traffic to the resource that provides the best latency.
+
+To cretae this type of policy the customer has to:
+
+1. Create a record-set for each resource to consume.
+2. For each record-set set the routing policy type to Latency.
+3. Select the Region for the resource in the record-set.
+
+## Failover routing policy
+
+This is used when we want to configure active-passive failover. Route53 uses health-checks to determin if a resource is available and to decide where to direct the traffic.
+
+To create this type of policy the customer has to :
+
+1. Create a Route53 health check for the active resource to consume.
+2. Create a record-set for the primary resource to consume.
+3. Set the routing policy type to Failover.
+4. Select the Primary radio button option to specify that the resource is our primary site.
+5. Select the health check to use for monitoring the resource, configured in step 1.
+6. Create another record-set for the secondary resource to consume.
+7. Set the routing policy type to Failover.
+8. Select the Secondary radio button option to specify that the resource is our secondary site and leave all the other options as default.
+
+##Geolocation routing policy
+
+This is used when we want to route traffic based on the location of your users.
+
+To cretae this type of policy the customer has to:
+
+1. Create a new record-set for the resource to consume.
+2. Set the routing policy type to Geolocation.
+3. Specify the Location that will be served by the resource in the record-set.
+4. Iterate step 1 to 3 to add extra locations.
+
+A default location is available for selection to cascade all the traffic that don't match the policies specified by the customer. 
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
