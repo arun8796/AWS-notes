@@ -124,4 +124,23 @@ To simplify access is also possible to set-up an Alias URL, in addition to the c
 
 # Federated Authentication
 
+If customer already manage user identities outside of AWS, he can use IAM identity providers instead of creating IAM users in their AWS account. With an identity provider (IdP), customer can manage user identities outside of AWS and give these external user identities permissions to use AWS resources in the AWS account. Customer can choose between three methods:
+
+1. **SAML based Federation**. This is used for integrating with Active Directory and other IdPs that support the SAML standard. Authentication flow works as follow:
+	1. User authenticates using the external IdP.
+	2. The IdP checks the user credentials towards its user store.
+	3. The IdP generates a SAML assertion (XML format) that the browser posts to the AWS SAML sign-in page **https://signin.aws.amazon.com/saml**
+	4. IAM validates the SAML assertions and uses the STS API **AssumeRoleWithSAML** to generate a set of temporary credentials to hand over to the user.
+	5. User uses the temporary credentials to sign service requests.
+2. **Web Identity Federation**. This is used for integration with Social logins (Facebook, Linkedin etc. etc.). Authentication flow works as follow:
+	1. User authenticates with the external IdP (let's pretend Facebook).
+	2. The IdP checks the user credentials towards its user store.
+	3. The IdP generates a pair UserId and AccesToken.
+	4. The pair produced in step3 is then posted to the **AssumeRoleWithWebIdentity** API endpoint to obtain a set of temporary credentials (Access Key Id, Access key Secret and Session Token).
+	5. User uses the temporary credentials to sign service requests.
+3. **Custom identity broker**. This is when the user wants to implement its own authentication mechanism. Authentication flow works as follow:
+	1. The user implements an Identity broker that authenticates the users against its identity store.
+	2. The identity broker upon user authentication uses internally the AssumedRole APpi to genertae a set of temporary credentials to hand over to the user.
+	3. User uses the temporary credentials to sign service requests.
+
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
