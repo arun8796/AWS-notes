@@ -64,7 +64,7 @@ To simplify the deployment of AWS resources a **Default** VPC is always provided
 
 ## Subnet
 
-Subnets are segments of a VPC’s IP address range where the user can place groups of isolated resources. **A max of 200 subnets per VPC can be allocated, Subnets are also always associated to one and only one AWS Availability Zone**. When a new subnet is cretaed the following information must be provided:
+Subnets are segments of a VPC's IP address range where the user can place groups of isolated resources. **A max of 200 subnets per VPC can be allocated, Subnets are also always associated to one and only one AWS Availability Zone**. When a new subnet is cretaed the following information must be provided:
 
 - A subnet name.
 - The VPC the subnet belongs to.
