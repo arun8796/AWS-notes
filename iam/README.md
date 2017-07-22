@@ -27,7 +27,7 @@ Users represents the main identities that access, and use the AWS platform, this
 - The access is restricted to the APIs (programmatic access). 
 - Both access types are granted.
 
-For programmatic access a new pair Access key and Secret key must be generated and these credentials can be downloaded locally as a CSV file. AWS doesn’t keep a copy of these information so in case these gets lost the only option left to the Administrator is to regenerated them from scratch (and this may impat the application that's using it).
+For programmatic access a new pair Access key and Secret key must be generated and these credentials can be downloaded locally as a CSV file. AWS doesn't keep a copy of these information so in case these gets lost the only option left to the Administrator is to regenerated them from scratch (and this may impat the application that's using it).
 
 Access key and Secret key can only be used for programmatic access (APIs) whilst username and password for accessing the services via the AWS console.
 
@@ -112,10 +112,16 @@ For security reasons AWS follows an Explicit-Allow rule meaning that all the Act
 
 # Sign-in URL
 
-Is the URL to be used for accessing the AWS console, the URL has the following form:
+The Sign-in URL is used for accessing the AWS console, the URL has the following form:
 
 https://<account_id>.signin.aws.amazon.com/console
 
-To simplify access is also possible to set-up an Alias URL, in addition to the canonical sign-in URL, but is important to remember that the Alias must be unique within the AWS domain. 
+To simplify access is also possible to set-up an Alias URL, in addition to the canonical one stated above, but is important to remember that the Alias must be unique within the AWS domain. 
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Federated Authentication
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
