@@ -12,13 +12,12 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 2. [VPC - Virtual Private Cloud](vpc/README.md)
 3. EC2 - Elastic Compute Cloud
 4. [S3 - Simple Storage Service](s3/README.md)
-5. [SQS - Simple Queue Service](sqs/README.md)
-6. [SNS - Simple Notification Service](sns/README.md)
-7. [SWF - Simple Worflow Service](swf/README.md) 
-8. [DynamoDB](dynamodb/README.md)
-9. [CloudFormation](cloudformation/README.md)
-10. [Beanstalk](beanstalk/README.md)
-11. [Route53](route53/README.md)
-12. [The Shared responsibility Model](shared-responsibility-model/README.md)
-
-* * *
+5. [Snowball](snowball/README.md)
+6. [SQS - Simple Queue Service](sqs/README.md)
+7. [SNS - Simple Notification Service](sns/README.md)
+8. [SWF - Simple Worflow Service](swf/README.md) 
+9. [DynamoDB](dynamodb/README.md)
+10. [CloudFormation](cloudformation/README.md)
+11. [Beanstalk](beanstalk/README.md)
+12. [Route53](route53/README.md)
+13. [The Shared responsibility Model](shared-responsibility-model/README.md)
