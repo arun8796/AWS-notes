@@ -1,0 +1,21 @@
+# Table of Contents
+
+1. [Preface](README.md#markdown-header-preface)
+
+* * *
+
+# Preface
+
+The AWS Cloud infrastructure is built around Regions, at the time of writing 16, and Availability Zones, 44, but on top of these AWS also supports a worlwide network of edge locations which is where the end users access services located at AWS. Edge locations are located in most of the major cities around the world and are **specifically used by CloudFront**, the AWS Content Delivery Network solution, aka CDN, to distribute content to end user to reduce latency. 
+
+**From the description above is clear that the number of Regions is much less than the number of Edge Locations in the AWS Global Infrastructure, and this is because a CDN should always try to guarantee the lowest latency possible and therefore its servers have to be more widespread geographically.**
+
+To better clarify few key terminology let's consider the example below:
+
+A company holds an S3 bucket in the London region that hosts a static website. User requests, to access content in that bucket, must always be routed in the London region as that's the **Origin** of the resources. This setup may introduce high latency for all that users that are geographically located more far from the Origin, like America. To avoid this problem a new **Distribution** can be created in CloudFront for the Origin, in our case the S3 bucket, wich in turn contains the list of edge locations where the content should be cached.
+
+When a Distribution is configured all the user requests are always sent to the closest edge location, geographically speaking, this in turn, the edge location, retrieves the content from the Origin and caches it for future requests. Content expires after an amount of time, TTL, configured by the user.
+
+![alt text](aws-global-infrastructure.png "AWS Global Infrastructure")
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
