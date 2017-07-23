@@ -10,6 +10,7 @@
     * [Network Access Control List](README.md#markdown-header-network-access-control-list)
     * [Peering Connection](README.md#markdown-header-peering-connection)
 3. [Bastion instance](README.md#markdown-header-bastion-instance)
+4. [Flow logs](README.md#markdown-header-flow-logs)
 
 * * *
 
@@ -175,12 +176,45 @@ Few scenarios to keep in mind are:
 
 * * *
 
-## Bastion instance
+# Bastion instance
 
 Instances in private subnets are not accessible directly from the internet, outbound connections are made available via NAT instances and/or NAT Gateway but inbound traffic is never allowed (remember that instances in the private subnets are not provided with a public IP address). This security constraint imposes a big limitation as customer cannot directly connect to the instance for maintainance purposes. 
 
 To overcome this issue a Bastion instance, also known as Jump box, practically an EC2 instance, can be deployed in a public subnet of the VPC and used as a bridge to connect to the instances located in the private subnet (via ssh and/or rdp).
 
 **Bastion host are totally unrelated with NAT instances and NAT Gateway as serve different purposes.**
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Flow Logs
+
+VPC Flow Logs is a feature that enables customers to capture information about the IP traffic going to and from network interfaces in a VPC. Flow log data is stored using Amazon CloudWatch Logs and can help to troubleshoot why specific traffic is not reaching an instance, which in turn can help to diagnose overly restrictive security group rules. Flow Logs can also be used as a security tool to monitor the traffic that is reaching the instances.
+
+Flow Logs feature is configured at VPC level and in order to enable it  two requirements must be met:
+
+1. A role that writes data into CloudWatch Logs is available.
+2. A CloudWatch Log container is created.
+
+A single FlowLog record contains the following data:
+
+Field | Description
+--- | ---
+version | The VPC flow logs version.
+account-id | The AWS account ID for the flow log.
+interface-id | The ID of the network interface for which the log stream applies.
+srcaddr | The source IPv4 or IPv6 address. The IPv4 address of the network interface is always its private IPv4 address.
+dstaddr | The destination IPv4 or IPv6 address. The IPv4 address of the network interface is always its private IPv4 address.
+srcport | The source port of the traffic.
+dstport | The destination port of the traffic.
+protocol | The IANA protocol number of the traffic. For more information, go to Assigned Internet Protocol Numbers.
+packets | The number of packets transferred during the capture window.
+bytes | The number of bytes transferred during the capture window.
+start | The time, in Unix seconds, of the start of the capture window.
+end | The time, in Unix seconds, of the end of the capture window.
+action | The action associated with the traffic: ACCEPT: The recorded traffic was permitted by the security groups or network ACLs. REJECT: The recorded traffic was not permitted by the security groups or network ACLs.
+log-status | The logging status of the flow log: OK: Data is logging normally to CloudWatch Logs. NODATA: There was no network traffic to or from the network interface during the capture window. SKIPDATA: Some flow log records were skipped during the capture window. This may be because of an internal capacity constraint, or an internal error. 
+
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
