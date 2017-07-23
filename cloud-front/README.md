@@ -12,9 +12,11 @@ The AWS Cloud infrastructure is built around Regions, at the time of writing 16,
 
 To better clarify few key terminology let's consider the example below:
 
-A company holds an S3 bucket in the London region that hosts a static website. User requests, to access content in that bucket, must always be routed in the London region as that's the **Origin** of the resources. This setup may introduce high latency for all that users that are geographically located more far from the Origin, like America. To avoid this problem a new **Distribution** can be created in CloudFront for the Origin, in our case the S3 bucket, wich in turn contains the list of edge locations where the content should be cached.
+A company holds an S3 bucket in the London region that hosts a static website. User requests, to access content in that bucket, must always be routed in the London region as that's the **Origin**. This setup, however, introduces high latency for all that users that are geographically located far from the **Origin**, think America. To avoid this problem a new **Distribution** can be configured in CloudFront for the **Origin**, in our case the S3 bucket, wich in turn contains the list of edge locations where the content will be cached.
 
-When a Distribution is configured all the user requests are always sent to the closest edge location, geographically speaking, this in turn, the edge location, retrieves the content from the Origin and caches it for future requests. Content expires after an amount of time, TTL, configured by the user.
+When a Distribution is configured all the user requests are always sent to the closest edge location, geographically speaking, and this, in turn retrieves the content from the Origin and caches it to serve future requests. Content cached at the Edge Location level expires after an amount of time, TTL, configured by the user in the distribution.
+
+Below a map of the AWS Global Infrastructure showing Regions and Edge Locations.
 
 ![alt text](aws-global-infrastructure.png "AWS Global Infrastructure")
 
