@@ -2,9 +2,12 @@
 
 1. [Preface](README.md#markdown-header-preface)
 2. [Provisioning options](README.md#markdown-header-provisioning-options)
-3. [Instance types](README.md#markdown-header-instance-types)#
-4. [Instance Store](README.md#markdown-header-instance-store)#
+3. [Instance types](README.md#markdown-header-instance-types)
+4. [Instance Store](README.md#markdown-header-instance-store)
 5. [EBS Volumes](README.md#markdown-header-ebs-volumes)
+
+100. [Miscellaneous notes about the provisioning of EC2 instances](README.md#markdown-header-miscellaneous-notes-about-the-provisioning-of-ec2-instances)
+100. [TOP APIs](README.md#markdown-header-top-apis)
 
 * * *
 
@@ -49,7 +52,7 @@ T2 | General purpose low cost instances
 P2 | General purpose GPU instances
 X1 | Memory Extreme Optimised instances
 
-In orde to remember the family times the acronim DrMcGiftPx can be used. **These information are subject to change so always check the AWS FAQ for the latest updates.**
+In orde to remember the family types the acronim DrMcGiftPx can be used. **These information are subject to change so always check the AWS FAQ for the latest updates.**
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
@@ -83,8 +86,29 @@ Magnetic, Standard | Cheap used for less frequently accessed data. **Possibility
 
 EBS Volumes cannot be mounted to multiple EC2 instances at the same time for this purpose EFS should be used. Data stored on an Amazon EBS volume can persist independently of the life of the instance while the instance store.
 
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 * * *
+
+# Miscellaneous notes about the provisioning of EC2 instances
+
+1. AMIs are only valid in the Region where they have been first created.
+2. Protect against accidental termination is set to off by default.
+3. CloudWatch detailed monitoring is set to off by default.
+4. Auto assign Public IP address oftion is set by default to "Use subnet settings".
+5. Shutdown behaviour is set to by default to "Stop".
+6. **As per [AWS Feb, 9 2017 note](https://aws.amazon.com/about-aws/whats-new/2017/02/new-attach-an-iam-role-to-your-existing-amazon-ec2-instance/) roles can now be attached or replaced on existing instances.**
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# TOP APIs
+
+API | Description
+--- | ---
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
 
 To include
 

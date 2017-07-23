@@ -97,3 +97,5 @@ ListQueues | Returns a list of your queues (up to 1000).
 SendMessage | Delivers a message to the specified queue.
 SendMessageBatch | Delivers up to ten messages to the specified queue.
 PurgeQueue |Deletes the messages in a queue specified by the QueueURL parameter. When you purge a queue, the message deletion process takes up to 60 seconds.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
