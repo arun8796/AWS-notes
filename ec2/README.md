@@ -6,6 +6,7 @@
 4. [Instance Store](README.md#markdown-header-instance-store)
 5. [EBS Volumes](README.md#markdown-header-ebs-volumes)
 100. [User data](README.md#markdown-header-user-data)
+100. [Instance Metadata](README.md#markdown-header-instance-metadata)
 100. [Miscellaneous notes about the provisioning of EC2 instances](README.md#markdown-header-miscellaneous-notes-about-the-provisioning-of-ec2-instances)
 100. [TOP APIs](README.md#markdown-header-top-apis)
 
@@ -92,11 +93,25 @@ EBS Volumes cannot be mounted to multiple EC2 instances at the same time for thi
 
 # User data
 
-User data is an option available when launching a new EC2 instance and is used to provide a script to configure the instance at lunch time. 
+User data is an option available when launching a new EC2 instance and is used to provide a script that can be used to configure the instance during lunch time. 
 
 **User data is executed only at launch** if customer stop an instance, modify the user data, and start the instance again, the new user data is not executed automatically.
 
 User data is limited to 16 KB, this limit applies to the data in raw form, not base64-encoded form, and must be base64-encoded. The Amazon EC2 console can perform the base64 encoding on behalf of the client or accept base64-encoded input.
+
+[*(back to the top)*](README.md#markdown-header-table-of-contents)
+
+* * *
+
+# Instance Metadata
+
+Every EC2 instace has some metadata that can be retrieved programmatically via the following URL.
+
+```
+http://169.254.169.254/latest/meta-data/
+```
+
+This URL is only accessible from the instance and not from the outside.
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
@@ -110,6 +125,8 @@ User data is limited to 16 KB, this limit applies to the data in raw form, not b
 4. Auto assign Public IP address oftion is set by default to "Use subnet settings".
 5. Shutdown behaviour is set to by default to "Stop".
 6. **As per [AWS Feb, 9 2017 note](https://aws.amazon.com/about-aws/whats-new/2017/02/new-attach-an-iam-role-to-your-existing-amazon-ec2-instance/) roles can now be attached and/or replaced on existing instances.**
+7. The "Delete on termination" option for the root volume is set to true by default.
+8. When a new EC2 instane is provisioned customer must either create a new access Key or select an existing one. This key is used to access the instance. When accessing via putty is important to remember that permission on the key file must be set to **400** otherwise an error will be shown. 
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
 
