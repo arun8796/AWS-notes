@@ -1,7 +1,7 @@
 # Table of Contents
 
 1. [Preface](README.md#markdown-header-preface)
-2. [Types of Snowball](README.md#markdown-header-the-trusted-advisor)
+2. [Types of Snowball](README.md#markdown-header-types-of-snowball)
 
 * * *
 
