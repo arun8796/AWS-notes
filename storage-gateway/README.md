@@ -1,7 +1,7 @@
 # Table of Contents
 
 1. [Preface](README.md#markdown-header-preface)
-2. [The Storage Gateway interfaces](README.md#markdown-headerthe-storage-gateway-interfaces))
+2. [The Storage Gateway interfaces](README.md#markdown-headerthe-storage-gateway-interfaces)
 
 * * *
 
