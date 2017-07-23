@@ -8,6 +8,7 @@
     * [Route tables](README.md#markdown-header-route-tables)
     * [NAT Instances and NAT Gateways](README.md#markdown-header-nat-instances-and-nat-gateways)
     * [Network Access Control List](README.md#markdown-header-network-access-control-list)
+    * [Security Groups](README.md#markdown-header-security-groups)
     * [Peering Connection](README.md#markdown-header-peering-connection)
 3. [Bastion instance](README.md#markdown-header-bastion-instance)
 4. [Flow logs](README.md#markdown-header-flow-logs)
@@ -145,6 +146,12 @@ Network ACLs are stateless whilst Security Group statefull. The main difference 
 A common exam question is about DDOS attack and IP blacklisting, in this case NACLs must be used as Security groups don't allow to blacklist range of IP addresses. 
 
 An ephemeral port is a short-lived endpoint that is created by the operating system when a program requests any available user port. The operating system selects the port number from a predefined range, typically between 1024 and 65535, and releases the port after the related TCP connection terminates. When an inbound request is received the response is usually sent over an ephemeral port that is allocated on the fly by the OS, this is an important concept to keep in mind when troubleshouting issue in VPC up as the problem may be caused by a NACL that doesn't ALLOW traffic through ephemeral ports.
+
+## Security Groups
+
+Security Groups are Virtual Firewall at instance level and represent the first level of defense for our Cloud instances. Each instance can be assigned to one or more Security Groups and each Security Group is made up of several Inbound and Outbound rules, these rules applies immediately after that the settings have been saved (zero delay). When creating a new Security Group, by default, all the Inbound traffic is denied by default whilst all the Outbound traffic is allowed.
+
+SecurityGroups are Stateful so when a new Inbound rule is created all the outbound response traffic that is being generated as part of the inbound request will be always allowed. ACLs instead are Stateless so an explicit Outbound rule has to be specified. Is not possible to block specific IP Addresses using Security Groups for this purpose ACLs must be used.
 
 ## Peering Connection
 
