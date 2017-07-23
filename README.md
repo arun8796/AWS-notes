@@ -10,7 +10,7 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 
 1. [IAM - Identity & Access Management](iam/README.md)
 2. [VPC - Virtual Private Cloud](vpc/README.md)
-3. EC2 - Elastic Compute Cloud
+3. [EC2 - Elastic Compute Cloud](ec2/README.md)
 4. [S3 - Simple Storage Service](s3/README.md)
 5. [Cloud Front](cloud-front/README.md)
 6. [Snowball](snowball/README.md)
