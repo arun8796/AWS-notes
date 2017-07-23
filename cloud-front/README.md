@@ -20,4 +20,6 @@ Below a map of the AWS Global Infrastructure showing Regions and Edge Locations.
 
 ![alt text](aws-global-infrastructure.png "AWS Global Infrastructure")
 
+CloudFront is seamlessly integrated with all the AWS service but also supports Origins that are located outside the AWS infrastructure. Edge locations are not just read only so the user can put content into it. Cached information can be cleared on demaand but AWS applies a charge for it.
+
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
