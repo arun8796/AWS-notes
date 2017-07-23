@@ -13,6 +13,7 @@ Content may not be fully exhaustive, or up to date, for this reason is always ad
 3. EC2 - Elastic Compute Cloud
 4. [S3 - Simple Storage Service](s3/README.md)
 5. [Snowball](snowball/README.md)
+6. [Storage Gateway](storage-gateway/README.md)
 6. [SQS - Simple Queue Service](sqs/README.md)
 7. [SNS - Simple Notification Service](sns/README.md)
 8. [SWF - Simple Worflow Service](swf/README.md) 
