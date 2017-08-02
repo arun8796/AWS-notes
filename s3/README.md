@@ -29,9 +29,19 @@ Bucket names must use the following naming convention:
 - The bucket name cannot contain underscores, end with a dash, have consecutive periods, or use dashes adjacent to periods.
 - The bucket name cannot be formatted as an IP address.
 
-A unique key, that can be constructed to mimic a hierarchical structure, has to be provided when new files are uploaded these keys are also needed for object retrieval. The bucket URL format is as follow:
+A unique key, that can be constructed to mimic a hierarchical structure, has to be provided when new files are uploaded these keys are also needed for object retrieval. 
+Amazon S3 supports both virtual-hosted–style and path-style URLs to access a bucket.
 
-```https://s3-<region>.amazonaws.com/<bucket name>```
+In a virtual-hosted–style URL, the bucket name is part of the domain name in the URL. For example:  
+```
+http://bucket.s3.amazonaws.com
+http://bucket.s3-aws-region.amazonaws.com.
+```
+In a path-style URL, the bucket name is not part of the domain (unless you use a region-specific endpoint).
+
+```
+https://s3-<region>.amazonaws.com/<bucket name>
+```
 
 Users can provision up to 100 buckets per AWS account, **this is a soft limit can be changed via AWS support**, and the size of a single file can vary between 0 bytes and 5TB, **this is an hard limit and cannot be changed**.
 There is no formal limit on the number of files and/or total size that a bucket can have also, for files exceeding 100 MBytes, the Multi Part upload must be used (see later for a detailed description).
