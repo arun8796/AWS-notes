@@ -120,10 +120,12 @@ Data is stored in multiple Availability zones within a region and therefore serv
 
 * * *
 
-AWS CLI and SDK
+# AWS CLI and SDK
 
 A set of APIs is also available to programmatically interact with the EC2 services. These APIs allows to automate the instance creation and all the common ops activities (like reboot, start and stop). APIs worth to mention are:
 
+Command | Description
+--- | ---
 aws describe-images | To describe the images that are available to us for creating instances.
 aws describe-instances | To describe the instances that are currently provisioned and running.
 aws-run-instances | To launch a brand new EC2 instance.
@@ -209,22 +211,3 @@ This URL is only accessible from the instance and not from the outside.
 8. When a new EC2 instane is provisioned customer must either create a new access Key or select an existing one. This key is used to access the instance. When accessing via putty is important to remember that permission on the key file must be set to **400** otherwise an error will be shown. 
 
 [*(back to the top)*](README.md#markdown-header-table-of-contents)
-
-* * *
-
-# TOP APIs
-
-API | Description
---- | ---
-
-[*(back to the top)*](README.md#markdown-header-table-of-contents)
-
-To include
-
-API
-    DescribeImages
-
-EBS
-
-    API
-        AttachVolume
